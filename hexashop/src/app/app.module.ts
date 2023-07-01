@@ -10,6 +10,13 @@ import { ProductsPageComponent } from './products-page/products-page.component';
 import { SingleProductPageComponent } from './single-product-page/single-product-page.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { HeaderComponent } from './core/components/header/header.component';
+import { MainBannerComponent } from './home-page/components/main-banner/main-banner.component';
+import { ExploreComponent } from './home-page/components/explore/explore.component';
+import { SubscribeComponent } from './core/components/subscribe/subscribe.component';
+import { PageHeadingComponent } from './core/components/page-heading/page-heading.component';
+import { AboutAreaComponent } from './about-page/components/about-area/about-area.component';
+import { OurTeamComponent } from './about-page/components/our-team/our-team.component';
+import { ContactUsComponent } from './contact-page/components/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +27,14 @@ import { HeaderComponent } from './core/components/header/header.component';
     ProductsPageComponent,
     SingleProductPageComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    MainBannerComponent,
+    ExploreComponent,
+    SubscribeComponent,
+    PageHeadingComponent,
+    AboutAreaComponent,
+    OurTeamComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
