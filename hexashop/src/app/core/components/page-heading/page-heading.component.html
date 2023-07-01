@@ -1,11 +1,11 @@
     <!-- ***** Main Banner Area Start ***** -->
-    <div class="page-heading about-page-heading" id="top">
+    <div class="page-heading about-page-heading" [ngClass]="{'about-page-heading': title.about}" id="top">
       <div class="container">
           <div class="row">
               <div class="col-lg-12">
                   <div class="inner-content">
-                      <h2>About Our Company</h2>
-                      <span>Awesome, clean &amp; creative HTML5 Template</span>
+                      <h2>{{title.title}}</h2>
+                      <span>{{title.text}}</span>
                   </div>
               </div>
           </div>

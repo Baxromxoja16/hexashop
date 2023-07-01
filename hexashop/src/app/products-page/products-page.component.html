@@ -1,5 +1,5 @@
 <!-- ***** Main Banner Area Start ***** -->
-<app-page-heading></app-page-heading>
+<app-page-heading [title]="title"></app-page-heading>
 <!-- ***** Main Banner Area End ***** -->
 
 <!-- ***** Products Area Starts ***** -->
@@ -22,13 +22,13 @@
             <div class="hover-content">
               <ul>
                 <li>
-                  <a href="single-product.html"><i class="fa fa-eye"></i></a>
+                  <a routerLink="/single-product"><i class="fa fa-eye"></i></a>
                 </li>
                 <li>
-                  <a href="single-product.html"><i class="fa fa-star"></i></a>
+                  <a routerLink="single-product"><i class="fa fa-star"></i></a>
                 </li>
                 <li>
-                  <a href="single-product.html"
+                  <a routerLink="/single-product"
                     ><i class="fa fa-shopping-cart"></i
                   ></a>
                 </li>

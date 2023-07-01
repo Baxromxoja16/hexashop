@@ -17,6 +17,7 @@ import { PageHeadingComponent } from './core/components/page-heading/page-headin
 import { AboutAreaComponent } from './about-page/components/about-area/about-area.component';
 import { OurTeamComponent } from './about-page/components/our-team/our-team.component';
 import { ContactUsComponent } from './contact-page/components/contact-us/contact-us.component';
+import { CartPageComponent } from './cart-page/cart-page.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ContactUsComponent } from './contact-page/components/contact-us/contact
     PageHeadingComponent,
     AboutAreaComponent,
     OurTeamComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    CartPageComponent
   ],
   imports: [
     BrowserModule,
