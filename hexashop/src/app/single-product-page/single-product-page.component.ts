@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./single-product-page.component.scss']
 })
 export class SingleProductPageComponent {
+  title = { title: 'Products', text: 'Learn more about us', about: false }
 
 }

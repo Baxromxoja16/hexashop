@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./products-page.component.scss']
 })
 export class ProductsPageComponent {
+  title = { title: 'Products', text: 'Learn more about us', about: false }
 
 }

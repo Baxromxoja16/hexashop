@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./contact-page.component.scss']
 })
 export class ContactPageComponent {
+  title = { title: 'Contact page', text: 'Contact us', about: true }
 
 }
