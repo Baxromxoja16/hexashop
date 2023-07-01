@@ -18,6 +18,7 @@ import { AboutAreaComponent } from './about-page/components/about-area/about-are
 import { OurTeamComponent } from './about-page/components/our-team/our-team.component';
 import { ContactUsComponent } from './contact-page/components/contact-us/contact-us.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CartPageComponent } from './cart-page/cart-page.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
