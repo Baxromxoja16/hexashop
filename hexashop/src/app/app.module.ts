@@ -19,6 +19,7 @@ import { OurTeamComponent } from './about-page/components/our-team/our-team.comp
 import { ContactUsComponent } from './contact-page/components/contact-us/contact-us.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryPageComponent } from './category-page/category-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     AboutAreaComponent,
     OurTeamComponent,
     ContactUsComponent,
-    CartPageComponent
+    CartPageComponent,
+    CategoryPageComponent
   ],
   imports: [
     BrowserModule,

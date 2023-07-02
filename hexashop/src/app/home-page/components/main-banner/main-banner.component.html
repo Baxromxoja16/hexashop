@@ -16,7 +16,7 @@
   <div class="col-lg-6">
     <div class="right-content">
       <div class="row">
-        <div class="col-lg-6" *ngFor="let category of categories.subCategories">
+        <div class="col-lg-6" *ngFor="let category of categories?.subCategories">
           <div class="right-first-image">
             <div class="thumb">
               <div class="inner-content">
@@ -26,7 +26,7 @@
                 <div class="inner">
                   <h4>{{category.name}}</h4>
                   <div class="main-border-button">
-                    <a href="#">Discover More</a>
+                    <a (click)="onDiscoverMore(category.id)">Discover More</a>
                   </div>
                 </div>
               </div>

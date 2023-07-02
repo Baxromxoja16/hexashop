@@ -13,9 +13,9 @@
             <li class="scroll-to-section">
               <a routerLink="/main" routerLinkActive="active">Home</a>
             </li>
-            <li class="scroll-to-section"><a routerLink="/men" routerLinkActive="active">Men's</a></li>
-            <li class="scroll-to-section"><a routerLink="/women" routerLinkActive="active">Women's</a></li>
-            <li class="scroll-to-section"><a routerLink="/kids" routerLinkActive="active">Kid's</a></li>
+            <li class="scroll-to-section"><a (click)="onDiscoverMore('men')" >Men's</a></li>
+            <li class="scroll-to-section"><a (click)="onDiscoverMore('women')">Women's</a></li>
+            <li class="scroll-to-section"><a (click)="onDiscoverMore('kids')">Kid's</a></li>
             <li class="submenu">
               <a href="javascript:;">Pages</a>
               <ul>
