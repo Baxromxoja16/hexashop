@@ -1,3 +1,25 @@
 a {
   cursor: pointer;
 }
+
+.cart-count {
+  a {
+    display: flex !important;
+    align-items: center;
+    position: relative;
+  }
+}
+.count {
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  width: 15px;
+  height: 15px;
+  background: red;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+}
