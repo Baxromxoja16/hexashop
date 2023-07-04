@@ -31,12 +31,9 @@ export class CategoryPageComponent implements OnInit, OnDestroy {
     }));
   }
 
-  linkTo(param: string, id: string) {
-    if (param === 'more') {
-      this.subscription$.add(this.productsMoreService.productsSee(localStorage.getItem('productId')!).subscribe());
-      this.subscription$.add(this.productsMoreService.productsSee(id).subscribe());
-      this.router.navigate(['/single-product']);
-    }
+  productSee(param: string, id: string) {
+    this.subscription$.add(this.productsMoreService.productsSee(param, localStorage.getItem('productId')!).subscribe());
+    this.subscription$.add(this.productsMoreService.productsSee(param, id).subscribe());
   }
 
   ngOnDestroy(): void {

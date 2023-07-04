@@ -24,7 +24,7 @@ const routes: Routes = [
     path: 'single-product', loadChildren: () => import('./single-product-page/single-product-page.module').then(m => m.SingleProductPageModule)
   },
   {
-    path: 'cart', loadChildren: () => import('./cart-page/cart-page.module').then(m => m.CartPageModule)
+    path: 'card', loadChildren: () => import('./cart-page/cart-page.module').then(m => m.CartPageModule)
   },
   {
     path: '**', redirectTo: 'error', pathMatch: 'full',

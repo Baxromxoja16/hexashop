@@ -16,7 +16,7 @@ export class SingleProductPageComponent implements OnInit{
   constructor(private productsMoreService: ProductsMoreService){}
 
   ngOnInit(): void {
-    this.product$ = this.productsMoreService.productsSee(localStorage.getItem('productId')!);
+    this.product$ = this.productsMoreService.productsSee('more', localStorage.getItem('productId')!);
   }
 
 }
