@@ -18,6 +18,8 @@ import { AboutAreaComponent } from './about-page/components/about-area/about-are
 import { OurTeamComponent } from './about-page/components/our-team/our-team.component';
 import { ContactUsComponent } from './contact-page/components/contact-us/contact-us.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CategoryPageComponent } from './category-page/category-page.component';
 
 @NgModule({
   declarations: [
@@ -36,10 +38,12 @@ import { CartPageComponent } from './cart-page/cart-page.component';
     AboutAreaComponent,
     OurTeamComponent,
     ContactUsComponent,
-    CartPageComponent
+    CartPageComponent,
+    CategoryPageComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],

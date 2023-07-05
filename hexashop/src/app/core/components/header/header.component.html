@@ -13,19 +13,18 @@
             <li class="scroll-to-section">
               <a routerLink="/main" routerLinkActive="active">Home</a>
             </li>
-            <li class="scroll-to-section"><a routerLink="/men" routerLinkActive="active">Men's</a></li>
-            <li class="scroll-to-section"><a routerLink="/women" routerLinkActive="active">Women's</a></li>
-            <li class="scroll-to-section"><a routerLink="/kids" routerLinkActive="active">Kid's</a></li>
+            <li class="scroll-to-section"><a routerLinkActive="active" routerLink="/about">About Us</a></li>
+            <li class="scroll-to-section"><a routerLinkActive="active" routerLink="/products">Products</a></li>
+            <li class="scroll-to-section"><a routerLinkActive="active" routerLink="/contact">Contact Us</a></li>
             <li class="submenu">
-              <a href="javascript:;">Pages</a>
+              <a href="javascript:;">Categories</a>
               <ul>
-                <li><a routerLink="/about">About Us</a></li>
-                <li><a routerLink="/products">Products</a></li>
-                <li><a routerLink="/single-product">Single Product</a></li>
-                <li><a routerLink="/contact">Contact Us</a></li>
+                <li><a (click)="onDiscoverMore('men')" >Men's</a></li>
+                <li><a (click)="onDiscoverMore('women')">Women's</a></li>
+                <li><a (click)="onDiscoverMore('kids')">Kid's</a></li>
               </ul>
             </li>
-            <li><a routerLink="/cart" routerLinkActive="active">Cart</a></li>
+            <li class="scroll-to-section cart-count"><a routerLink="/card" routerLinkActive="active">Cart <span class="count">{{countCarts.length}}</span></a></li>
           </ul>
           <a class="menu-trigger">
             <span>Menu</span>

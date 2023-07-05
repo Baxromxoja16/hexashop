@@ -1,0 +1,40 @@
+<app-page-heading [title]="title"></app-page-heading>
+<div class="section" id="products">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4" *ngFor="let product of products">
+        <div class="item">
+          <div class="thumb">
+            <div class="hover-content">
+              <ul>
+                <li>
+                  <a (click)="productSee('more', product.id)"><i class="fa fa-eye"></i></a>
+                </li>
+                <!-- <li>
+                  <a routerLink="/single-product"><i class="fa fa-star"></i></a>
+                </li> -->
+                <li>
+                  <a (click)="productSee('cart', product.id)"
+                    ><i class="fa fa-shopping-cart"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+            <img src="{{ product.image.mid }}" alt="" />
+          </div>
+          <div class="down-content">
+            <h4>{{ product.name }}</h4>
+            <span>${{ product.price }}</span>
+            <ul class="stars">
+              <li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

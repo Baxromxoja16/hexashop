@@ -18,10 +18,13 @@ const routes: Routes = [
     path: 'products', loadChildren: () => import('./products-page/products-page.module').then(m => m.ProductsPageModule)
   },
   {
+    path: 'category', loadChildren: () => import('./category-page/category.module').then(m => m.CategoryModule)
+  },
+  {
     path: 'single-product', loadChildren: () => import('./single-product-page/single-product-page.module').then(m => m.SingleProductPageModule)
   },
   {
-    path: 'cart', loadChildren: () => import('./cart-page/cart-page.module').then(m => m.CartPageModule)
+    path: 'card', loadChildren: () => import('./cart-page/cart-page.module').then(m => m.CartPageModule)
   },
   {
     path: '**', redirectTo: 'error', pathMatch: 'full',
