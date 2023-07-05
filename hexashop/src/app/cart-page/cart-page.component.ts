@@ -12,14 +12,11 @@ import { ProductsMoreService } from '../core/services/products-more.service';
 export class CartPageComponent implements OnInit, OnDestroy {
   title = { title: 'Cart page', text: '', about: true }
 
-  subscription: Subscription = new Subscription();
-
-  cardData: Products[] = JSON.parse(localStorage.getItem('card')!);
-
   constructor(private productsMoreService: ProductsMoreService, private router: Router) { }
 
+  cardData: Products[] = this.productsMoreService.cardData;
+
   ngOnInit(): void {
-    this.subscription.add(this.productsMoreService.productsSee('card', localStorage.getItem('productId')!).subscribe());
   }
 
   view(param: string, id: string) {
@@ -27,13 +24,12 @@ export class CartPageComponent implements OnInit, OnDestroy {
       this.productsMoreService.productsSee(param, id).subscribe();
       this.router.navigate(['/single-product']);
     } else {
-      localStorage.removeItem('productId');
-      const deleted = this.cardData.filter((data) => data.id !== id);
-      localStorage.setItem('card', JSON.stringify(deleted));
+      const found = this.cardData.findIndex((data) => data.id === id);
+      const deleted = this.cardData.splice(found, 1);
+      localStorage.setItem('card', JSON.stringify(this.cardData));
     }
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }

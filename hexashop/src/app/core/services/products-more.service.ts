@@ -15,20 +15,19 @@ export class ProductsMoreService {
   constructor(private http: HttpClient, private router: Router) { }
 
   productsSee(param: string, id: string) {
-    localStorage.setItem('productId', id);
+    id ? localStorage.setItem('productId', id): localStorage.removeItem('productId');
     if (param === 'more') {
       this.router.navigate(['/single-product']);
       return this.http.get<Products>(this.baseUrl + 'goods/item/' + id);
     }
-    else {
+    else { // param === 'card'
       return this.http.get<Products>(this.baseUrl + 'goods/item/' + id).pipe(tap((data) => {
 
         // Valitation for localStorage
         if(this.cardData.length > 0) {
-          const found = this.cardData.find((val) => val.id === data.id);
-
-          found === undefined ? this.cardData.push(data) : found;
-
+          const found = this.cardData.find((val) => val.id === id);
+          console.log(found);
+          if(found === undefined) this.cardData.push(data);
         } else {
           this.cardData.push(data);
         }
