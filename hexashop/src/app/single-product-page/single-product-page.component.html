@@ -32,20 +32,20 @@
             </div>
             <div class="right-content">
               <div class="quantity buttons_added">
-                <input type="button" value="-" class="minus" />
+                <input (click)="amount('decriment')" type="button" value="-" class="minus" />
                 <input
                   type="number"
                   step="1"
                   min="1"
                   name="quantity"
-                  value="1"
+                  value="{{count}}"
                   title="Qty"
                   class="input-text qty text"
                   size="4"
                   pattern=""
                   inputmode=""
                 />
-                <input type="button" value="+" class="plus" />
+                <input (click)="amount('incriment')" type="button" value="+" class="plus" />
               </div>
             </div>
             <span class="price">Size: {{ (product$ | async)?.size }}</span>

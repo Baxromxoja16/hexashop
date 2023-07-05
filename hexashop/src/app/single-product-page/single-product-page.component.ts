@@ -8,21 +8,32 @@ import { ProductsMoreService } from '../core/services/products-more.service';
   templateUrl: './single-product-page.component.html',
   styleUrls: ['./single-product-page.component.scss']
 })
-export class SingleProductPageComponent implements OnInit, OnDestroy{
+export class SingleProductPageComponent implements OnInit, OnDestroy {
   title = { title: 'Products', text: 'Learn more about us', about: false }
 
   product$!: Observable<Products>;
 
   subscription: Subscription = new Subscription();
 
-  constructor(private productsMoreService: ProductsMoreService){}
+  count = 1;
+
+  constructor(private productsMoreService: ProductsMoreService) { }
 
   ngOnInit(): void {
     this.product$ = this.productsMoreService.productsSee('more', localStorage.getItem('productId')!);
   }
 
   addToCart() {
-   this.subscription.add(this.productsMoreService.productsSee('card', localStorage.getItem('productId')!).subscribe());
+    this.subscription.add(this.productsMoreService.productsSee('card', localStorage.getItem('productId')!).subscribe());
+  }
+
+  amount(type: string) {
+    if (type === 'decriment') {
+      this.count--
+      this.count === 0 ? this.count = 0 :  this.count;
+    } else {
+      this.count++;
+    }
   }
 
   ngOnDestroy(): void {
