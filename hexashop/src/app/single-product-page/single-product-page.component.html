@@ -51,7 +51,7 @@
             <span class="price">Size: {{ (product$ | async)?.size }}</span>
           </div>
           <div class="total">
-            <h4>Total: $210.00</h4>
+            <h4>Total: ${{totalPrice}}</h4>
             <div class="main-border-button"><a (click)="addToCart()">Add To Cart</a></div>
           </div>
         </div>

@@ -17,10 +17,17 @@ export class SingleProductPageComponent implements OnInit, OnDestroy {
 
   count = 1;
 
+  totalPrice = 0;
+  productPrice = 0;
+
   constructor(private productsMoreService: ProductsMoreService) { }
 
   ngOnInit(): void {
     this.product$ = this.productsMoreService.productsSee('more', localStorage.getItem('productId')!);
+    this.subscription.add(this.productsMoreService.productsSee('more', localStorage.getItem('productId')!).subscribe((data) => {
+      this.productPrice = data.price;
+      this.totalPrice = data.price;
+    }))
   }
 
   addToCart() {
@@ -30,9 +37,12 @@ export class SingleProductPageComponent implements OnInit, OnDestroy {
   amount(type: string) {
     if (type === 'decriment') {
       this.count--
-      this.count === 0 ? this.count = 0 :  this.count;
+      this.totalPrice -= this.productPrice;
+      this.totalPrice < this.productPrice ? this.totalPrice = this.productPrice :  this.totalPrice;
+      this.count < 1 ? this.count = 1 :  this.count;
     } else {
       this.count++;
+      this.totalPrice += this.productPrice;
     }
   }
 
