@@ -1,3 +1,4 @@
+import { ContactDto } from './dto/contact.dto';
 import {
   Injectable,
   BadRequestException,
@@ -9,10 +10,15 @@ import { InjectModel } from '@nestjs/mongoose';
 import { UserName, UserType } from './model/user.schema';
 import { Model, isValidObjectId } from 'mongoose';
 import * as bcrypt from 'bcrypt';
+import { TelegramService, TelegramMessage } from 'nestjs-telegram';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(UserName) private userModel: Model<UserType>) {}
+  constructor(
+    @InjectModel(UserName) private userModel: Model<UserType>,
+    private readonly telegram: TelegramService,
+  ) {}
+
   async create(createUserDto: CreateUserDto) {
     await this.isExists(createUserDto.phone);
     createUserDto.password = await bcrypt.hash(createUserDto.password, 12);
@@ -37,7 +43,18 @@ export class UsersService {
 
   async findOne(id: string) {
     this.checkId(id);
-    return this.userModel.findById(id) || "User is not found";
+    return this.userModel.findById(id) || 'User is not found';
+  }
+
+  async contactSend(contactDto: ContactDto): Promise<TelegramMessage> {
+    const message = `
+    <b>${contactDto.name}</b>\n<i>${contactDto.email}</i>\n${contactDto.message}\nType: <tg-emoji emoji-id="121323">🧑‍💼</tg-emoji>Client
+    `;
+    const chat_id = 635762695;
+    const res = await this.telegram
+      .sendMessage({ chat_id, text: message, parse_mode: "html" })
+      .toPromise();
+    return res;
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
