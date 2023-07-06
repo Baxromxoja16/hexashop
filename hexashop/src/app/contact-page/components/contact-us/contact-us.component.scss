@@ -1,0 +1,13 @@
+button {
+  width: 100% !important;
+  line-height: initial !important;
+}
+.help-block {
+  color: red;
+}
+.ng-invalid.ng-touched{
+  border-color:red ;
+}
+.ng-valid.ng-touched.ng-dirty{
+  border-color:#7a7a7a !important;
+}
