@@ -1,4 +1,4 @@
-import { Injectable, BadRequestException, HttpException } from '@nestjs/common';
+import { Injectable, BadRequestException, ForbiddenException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -15,9 +15,16 @@ export class UsersService {
     const user = await this.userModel.create(createUserDto);
 
     return {
+      _id: user._id,
       phone: user.phone,
       name: user.name,
     };
+  }
+
+  async findOneByPhone(phone: string) {
+    const user = await this.userModel.findOne({ phone })
+    if(!user) throw new ForbiddenException("Account is not found")
+    return user;
   }
 
   async findAll() {
@@ -43,7 +50,6 @@ export class UsersService {
 
   private async isExists(phone: string) {
     const user = await this.userModel.findOne({ phone });
-    if (user)
-      throw new BadRequestException('User phone already exists');
+    if (user) throw new BadRequestException('User phone already exists');
   }
 }
