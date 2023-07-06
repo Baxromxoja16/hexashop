@@ -9,8 +9,4 @@ export class RefreshAuthDto {
   })
   @IsString()
   refreshToken: string;
-
-  @ApiProperty({example: "64a669535826eca207c3ba8e", description: "user id"})
-  @IsString()
-  userId: string;
 }

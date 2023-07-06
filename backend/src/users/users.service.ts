@@ -1,9 +1,13 @@
-import { Injectable, BadRequestException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { UserName, UserType } from './model/user.schema';
-import { Model } from 'mongoose';
+import { Model, isValidObjectId } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -22,8 +26,8 @@ export class UsersService {
   }
 
   async findOneByPhone(phone: string) {
-    const user = await this.userModel.findOne({ phone })
-    if(!user) throw new ForbiddenException("Account is not found")
+    const user = await this.userModel.findOne({ phone });
+    if (!user) throw new ForbiddenException('Account is not found');
     return user;
   }
 
@@ -32,7 +36,8 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    return this.userModel.findById(id);
+    this.checkId(id);
+    return this.userModel.findById(id) || "User is not found";
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
@@ -46,6 +51,13 @@ export class UsersService {
 
   remove(id: number) {
     return `This action removes a #${id} user`;
+  }
+
+  private checkId(id: string) {
+    if (isValidObjectId(id)) {
+      return true;
+    }
+    throw new BadRequestException('Id is not valid');
   }
 
   private async isExists(phone: string) {
