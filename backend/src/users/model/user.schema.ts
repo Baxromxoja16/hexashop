@@ -18,4 +18,6 @@ export type UserType = {
   phone: string;
   password: string;
   shopCart: [];
+  createdAt: Date;
+  updatedAt: Date;
 };
