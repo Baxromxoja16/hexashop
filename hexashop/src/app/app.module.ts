@@ -25,6 +25,7 @@ import { LoginPageComponent } from './auth/login-page/login-page.component';
 import { RegisterPageComponent } from './auth/register-page/register-page.component';
 import { AuthComponent } from './auth/auth.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     LoginPageComponent,
     RegisterPageComponent,
     AuthComponent,
-    MainPageComponent
+    MainPageComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

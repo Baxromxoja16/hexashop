@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
 import { RegisterPageComponent } from './auth/register-page/register-page.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'main', pathMatch: 'full'
+    path: '', redirectTo: '/main', pathMatch: 'full'
   },
   {
-    path: '', component: MainPageComponent, children: [
+    path: '',  component: MainPageComponent, children: [
       {
         path: 'main', loadChildren: () => import('./main-page/home-page/home-page.module').then(m => m.HomePageModule)
       },
@@ -32,9 +33,6 @@ const routes: Routes = [
       {
         path: 'card', loadChildren: () => import('./main-page/cart-page/cart-page.module').then(m => m.CartPageModule)
       },
-      {
-        path: '**', redirectTo: 'error', pathMatch: 'full',
-      },
     ]
   },
   {
@@ -43,10 +41,11 @@ const routes: Routes = [
       { path: 'register', component: RegisterPageComponent},
     ]
   },
+  { path: '**', component: ErrorPageComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
