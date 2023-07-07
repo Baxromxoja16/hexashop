@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { HomeService } from 'src/app/home-page/services/home.service';
+import { HomeService } from 'src/app/main-page/home-page/services/home.service';
 import { ProductsMoreService } from '../../services/products-more.service';
 
 @Component({
