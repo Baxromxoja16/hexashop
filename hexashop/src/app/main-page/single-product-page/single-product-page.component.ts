@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Products } from '../core/models/products';
-import { ProductsMoreService } from '../core/services/products-more.service';
+import { Products } from '../../core/models/products';
+import { ProductsMoreService } from '../../core/services/products-more.service';
 
 @Component({
   selector: 'app-single-product-page',
