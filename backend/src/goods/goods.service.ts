@@ -1,30 +1,55 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateGoodDto } from './dto/create-good.dto';
 import { UpdateGoodDto } from './dto/update-good.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { GoodsName, GoodsType } from './model/good.schema';
-import { Model } from 'mongoose';
+import { Model, isValidObjectId } from 'mongoose';
 
 @Injectable()
 export class GoodsService {
   constructor(@InjectModel(GoodsName) private goodsModel: Model<GoodsType>) {}
-  create(createGoodDto: CreateGoodDto) {
-    return 'This action adds a new good';
+  async create(createGoodDto: CreateGoodDto) {
+    const good = await this.goodsModel.create(createGoodDto);
+    return good;
   }
 
-  findAll() {
-    return `This action returns all goods`;
+  async findAll() {
+    return await this.goodsModel.find().limit(20);
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} good`;
+  async findOne(id: string) {
+    await this.checkId(id);
+    const good = await this.goodsModel.findById(id);
+    if (!good) throw new NotFoundException('Product is not found');
+    return good;
   }
 
-  update(id: string, updateGoodDto: UpdateGoodDto) {
+  async findCategory(categoryId: string) {
+    await this.checkId(categoryId);
+    const good = await this.goodsModel
+      .find({ category: categoryId })
+    if (!good) throw new NotFoundException('Product is not found');
+    return good;
+  }
+
+  // async findSubcategory(categoryId: string, subcategoryId: string) {}
+
+  async update(id: string, updateGoodDto: UpdateGoodDto) {
     return `This action updates a #${id} good`;
   }
 
-  remove(id: string) {
+  async remove(id: string) {
     return `This action removes a #${id} good`;
+  }
+
+  private checkId(id: string) {
+    if (isValidObjectId(id)) {
+      return true;
+    }
+    throw new BadRequestException('Id is not valid');
   }
 }

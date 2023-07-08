@@ -1,9 +1,10 @@
-import { ContactDto } from './dto/contact.dto';
 import {
   Injectable,
   BadRequestException,
   ForbiddenException,
+  NotFoundException,
 } from '@nestjs/common';
+import { ContactDto } from './dto/contact.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -42,8 +43,10 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    this.checkId(id);
-    return this.userModel.findById(id) || 'User is not found';
+    await this.checkId(id);
+    const user = await this.userModel.findById(id);
+    if (!user) throw new NotFoundException('User is not found');
+    return user;
   }
 
   async contactSend(contactDto: ContactDto): Promise<TelegramMessage> {
@@ -52,7 +55,7 @@ export class UsersService {
     `;
     const chat_id = 635762695;
     const res = await this.telegram
-      .sendMessage({ chat_id, text: message, parse_mode: "html" })
+      .sendMessage({ chat_id, text: message, parse_mode: 'html' })
       .toPromise();
     return res;
   }

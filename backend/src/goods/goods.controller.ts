@@ -1,25 +1,54 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { GoodsService } from './goods.service';
 import { CreateGoodDto } from './dto/create-good.dto';
 import { UpdateGoodDto } from './dto/update-good.dto';
+import { AuthGuard, Public } from 'src/auth/guards/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('goods')
 export class GoodsController {
   constructor(private readonly goodsService: GoodsService) {}
 
-  @Post()
-  create(@Body() createGoodDto: CreateGoodDto) {
-    return this.goodsService.create(createGoodDto);
-  }
-
+  @Public()
   @Get()
   findAll() {
     return this.goodsService.findAll();
   }
 
-  @Get(':id')
+  @Public()
+  @Get('/category/:categoryid')
+  findCategory(@Param('categoryid') categoryId: string) {
+    return this.goodsService.findCategory(categoryId);
+  }
+
+  // @Public()
+  // @Get('/category/:categoryid/:subcategoryid')
+  // findSubcategory(
+  //   @Param('categoryid') categoryId: string,
+  //   @Param('subcategoryid') subcategoryId: string,
+  // ) {
+  //   return this.goodsService.findSubcategory(categoryId, subcategoryId);
+  // }
+
+  @Public()
+  @Get('/item/:id')
   findOne(@Param('id') id: string) {
     return this.goodsService.findOne(id);
+  }
+
+  @Public()
+  @Post()
+  create(@Body() createGoodDto: CreateGoodDto) {
+    return this.goodsService.create(createGoodDto);
   }
 
   @Patch(':id')

@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { CategoryName, CategoryType } from './model/category.schema';
-import { Model } from 'mongoose';
+import { Model, isValidObjectId } from 'mongoose';
 
 @Injectable()
 export class CategoryService {
@@ -11,23 +11,35 @@ export class CategoryService {
     @InjectModel(CategoryName) private categoriesModel: Model<CategoryType>,
   ) {}
 
-  create(createCategoryDto: CreateCategoryDto) {
-    return 'This action adds a new category';
+  async create(createCategoryDto: CreateCategoryDto) {
+    const category = await this.categoriesModel.create(createCategoryDto)
+
+    return category;
   }
 
-  findAll() {
-    return `This action returns all category`;
+  async findAll() {
+    return await this.categoriesModel.find().limit(20);
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} category`;
+  async findOne(id: string) {
+    await this.checkId(id);
+    const category = await this.categoriesModel.findById(id);
+    if(!category) throw new NotFoundException("Product is not found")
+    return category;
   }
 
-  update(id: string, updateCategoryDto: UpdateCategoryDto) {
+  async update(id: string, updateCategoryDto: UpdateCategoryDto) {
     return `This action updates a #${id} category`;
   }
 
-  remove(id: string) {
+  async remove(id: string) {
     return `This action removes a #${id} category`;
+  }
+
+  private checkId(id: string) {
+    if (isValidObjectId(id)) {
+      return true;
+    }
+    throw new BadRequestException('Id is not valid');
   }
 }
