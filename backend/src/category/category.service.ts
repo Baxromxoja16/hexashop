@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -12,7 +16,7 @@ export class CategoryService {
   ) {}
 
   async create(createCategoryDto: CreateCategoryDto) {
-    const category = await this.categoriesModel.create(createCategoryDto)
+    const category = await this.categoriesModel.create(createCategoryDto);
 
     return category;
   }
@@ -24,16 +28,16 @@ export class CategoryService {
   async findOne(id: string) {
     await this.checkId(id);
     const category = await this.categoriesModel.findById(id);
-    if(!category) throw new NotFoundException("Product is not found")
+    if (!category) throw new NotFoundException('Product is not found');
     return category;
   }
 
   async update(id: string, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
+    return await this.categoriesModel.updateOne({ id }, updateCategoryDto);
   }
 
   async remove(id: string) {
-    return `This action removes a #${id} category`;
+    return await this.categoriesModel.deleteOne({ id });
   }
 
   private checkId(id: string) {
