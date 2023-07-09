@@ -1,18 +1,27 @@
-<form>
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()">
   <div class="mb-3">
     <h3>Login</h3>
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Phone number</label>
-    <input type="text" class="form-control" id="exampleInputPhone">
+    <input formControlName="phone" type="text" class="form-control" id="exampleInputPhone">
+    <span class="help-block"  *ngIf="createForm.controls['phone'].errors?.['pattern']
+    && createForm.get('phone')?.touched" >Wrong number</span>
+    <span class="help-block"  *ngIf="createForm.controls['phone'].errors?.['required']
+    && createForm.get('phone')?.touched" >Number is required</span>
+
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+    <span class="help-block"  *ngIf="createForm.controls['password'].errors?.['required']
+    && createForm.controls['password'].touched" >Password is required</span>
+    <span class="help-block"  *ngIf="createForm.controls['password'].errors?.['pattern']
+    && createForm.controls['password'].touched" >Wrong password <span>(uppercase, lowercase, number and special characters)</span></span>
   </div>
   <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" [disabled]="(createForm.status === 'INVALID')">Submit</button>
 </form>
