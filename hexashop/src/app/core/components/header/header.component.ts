@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { HomeService } from 'src/app/main-page/home-page/services/home.service';
 import { ProductsMoreService } from '../../services/products-more.service';
 
@@ -9,15 +10,20 @@ import { ProductsMoreService } from '../../services/products-more.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   subscription$: Subscription = new Subscription();
+  isLogin = this.authService.isLogin.value;
 
   countCarts = this.productsMoreService.cardData;
 
-  isLogin = false;
+  constructor(private router: Router,
+    private homeService: HomeService,
+    private productsMoreService: ProductsMoreService,
+    private authService: AuthService) { }
 
-  constructor(private router: Router, private homeService: HomeService, private productsMoreService: ProductsMoreService){}
+  ngOnInit(): void {
+  }
 
   onDiscoverMore(id: string) {
     this.subscription$.add(this.homeService.getClothes(id).subscribe());
@@ -29,6 +35,6 @@ export class HeaderComponent {
       this.router.navigate(['/login'])
     }
 
-    localStorage.removeItem('token');
+    this.authService.logout()
   }
 }

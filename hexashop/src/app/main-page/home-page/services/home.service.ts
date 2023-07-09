@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Subject, tap } from 'rxjs';
-import { Products } from 'src/app/core/models/products';
+import { Products } from 'src/app/core/models/products.model';
 
 import { Categories } from '../home-page.component';
 

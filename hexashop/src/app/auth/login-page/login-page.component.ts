@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -17,10 +18,12 @@ export class LoginPageComponent {
     check: new FormControl(false, [Validators.requiredTrue]),
   })
 
+  constructor(private authService: AuthService){}
+
   onSubmit(type: string) {
     if(type === 'login') {
       // Login logic
-      console.log(this.createForm);
+      this.authService.login(this.createForm.value).subscribe();
     } else if(type === 'register') {
       // Register logic
     }
