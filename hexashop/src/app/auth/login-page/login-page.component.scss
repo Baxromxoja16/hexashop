@@ -1,5 +1,5 @@
 form {
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(30px);
   padding: 20px 25px;
   border-radius: 10px;
   color: white;
@@ -11,6 +11,7 @@ form {
 }
 .help-block {
   color: red;
+  font-size: 12px;
 
   span {
     font-size: 10px;

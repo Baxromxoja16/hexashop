@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
-import { RegisterPageComponent } from './auth/register-page/register-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
 
@@ -38,7 +37,6 @@ const routes: Routes = [
   {
     path: '', component: AuthComponent, children: [
       { path: 'login', component: LoginPageComponent},
-      { path: 'register', component: RegisterPageComponent},
     ]
   },
   { path: '**', component: ErrorPageComponent }

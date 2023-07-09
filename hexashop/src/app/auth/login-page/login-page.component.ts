@@ -14,9 +14,15 @@ export class LoginPageComponent {
   createForm = new FormGroup({
     phone: new FormControl(null, [Validators.required, Validators.pattern(this.phoneReg)]),
     password: new FormControl(null, [Validators.required, Validators.pattern(this.passwordReg)]),
+    check: new FormControl(false, [Validators.requiredTrue]),
   })
 
-  onSubmit() {
-    console.log(this.createForm.status);
+  onSubmit(type: string) {
+    if(type === 'login') {
+      // Login logic
+      console.log(this.createForm);
+    } else if(type === 'register') {
+      // Register logic
+    }
   }
 }
