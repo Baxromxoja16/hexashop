@@ -15,11 +15,20 @@ export class HeaderComponent {
 
   countCarts = this.productsMoreService.cardData;
 
-  constructor(private router: Router, private homeService: HomeService, private productsMoreService: ProductsMoreService){}
+  isLogin = false;
 
+  constructor(private router: Router, private homeService: HomeService, private productsMoreService: ProductsMoreService){}
 
   onDiscoverMore(id: string) {
     this.subscription$.add(this.homeService.getClothes(id).subscribe());
     this.router.navigate(['/category']);
+  }
+
+  logIn() {
+    if (!this.isLogin) {
+      this.router.navigate(['/login'])
+    }
+
+    localStorage.removeItem('token');
   }
 }

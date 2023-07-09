@@ -13,25 +13,37 @@
             <li class="scroll-to-section">
               <a routerLink="/main" routerLinkActive="active">Home</a>
             </li>
-            <li class="scroll-to-section"><a routerLinkActive="active" routerLink="/about">About Us</a></li>
-            <li class="scroll-to-section"><a routerLinkActive="active" routerLink="/products">Products</a></li>
-            <li class="scroll-to-section"><a routerLinkActive="active" routerLink="/contact">Contact Us</a></li>
-            <li class="submenu">
-              <a href="javascript:;">Categories</a>
-              <ul>
-                <li><a (click)="onDiscoverMore('men')" >Men's</a></li>
-                <li><a (click)="onDiscoverMore('women')">Women's</a></li>
-                <li><a (click)="onDiscoverMore('kids')">Kid's</a></li>
-              </ul>
+            <li class="scroll-to-section">
+              <a routerLinkActive="active" routerLink="/about">About Us</a>
             </li>
-            <li class="scroll-to-section cart-count"><a routerLink="/card" routerLinkActive="active">Cart <span class="count">{{countCarts.length}}</span></a></li>
+            <li class="scroll-to-section">
+              <a routerLinkActive="active" routerLink="/products">Products</a>
+            </li>
+            <li class="scroll-to-section">
+              <a routerLinkActive="active" routerLink="/contact">Contact Us</a>
+            </li>
+            <li class="scroll-to-section cart-count">
+              <a routerLink="/card" routerLinkActive="active"
+                >Cart <span class="count">{{ countCarts.length }}</span></a
+              >
+            </li>
+            <li class="scroll-to-section">
+              <button
+                class="btn btn-danger"
+                [ngClass]="{ 'btn-dark': !isLogin }"
+              >
+                <a class="login-btn" (click)="logIn()">
+                  {{ !isLogin ? "Login" : "Log out" }}
+                </a>
+              </button>
+            </li>
           </ul>
-          <a class="menu-trigger">
-            <span>Menu</span>
-          </a>
           <!-- ***** Menu End ***** -->
         </nav>
       </div>
     </div>
+  </div>
+  <div class="container mt-2">
+    <app-search-field></app-search-field>
   </div>
 </header>
