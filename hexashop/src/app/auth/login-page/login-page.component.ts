@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -7,7 +8,8 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnDestroy{
+  subscription$: Subscription = new Subscription();
 
   phoneReg = new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/)
   passwordReg = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9_])")
@@ -23,9 +25,15 @@ export class LoginPageComponent {
   onSubmit(type: string) {
     if(type === 'login') {
       // Login logic
-      this.authService.login(this.createForm.value).subscribe();
+      this.subscription$.add(this.authService.login(this.createForm.value).subscribe());
     } else if(type === 'register') {
       // Register logic
+      this.subscription$.add(this.authService.register(this.createForm.value).subscribe());
     }
   }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
+  }
+
 }

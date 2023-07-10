@@ -17,9 +17,16 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(data: any) {
-    this.handleAuthentication('data.token', 'data.refToken');
-    this.router.navigate(['/main']);
     return this.http.post<TokenRes>(this.baseUrl + 'auth/login', data).pipe(tap(data => {
+      this.handleAuthentication('data.token', 'data.refToken');
+      this.router.navigate(['/main']);
+    }))
+  }
+
+  register(data: any) {
+    return this.http.post<TokenRes>(this.baseUrl + 'auth/register', data).pipe(tap(data => {
+      this.handleAuthentication(data.token, data.refToken);
+      this.router.navigate(['/main']);
     }))
   }
 
