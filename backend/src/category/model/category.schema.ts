@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 export const CategorySchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  img: { type: String, requred: true },
+  name: { type: String, required: true, unique: true },
+  img: { type: String, requred: true, unique: true },
   subCategories: [
     {
       category: { type: String, required: true },

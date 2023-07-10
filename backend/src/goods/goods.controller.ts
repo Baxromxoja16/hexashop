@@ -46,6 +46,12 @@ export class GoodsController {
   }
 
   @Public()
+  @Get('/:page')
+  pagination(@Param('id') id: string) {
+    return this.goodsService.findPage(+id);
+  }
+
+  @Public()
   @Post()
   create(@Body() createGoodDto: CreateGoodDto) {
     return this.goodsService.create(createGoodDto);

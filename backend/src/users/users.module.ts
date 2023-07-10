@@ -5,11 +5,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema, UserName } from './model/user.schema';
 import { TelegramModule } from 'nestjs-telegram';
 import { ConfigService } from '@nestjs/config';
+import { AdminName, AdminSchema } from './model/admin.schema';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: UserName, schema: UserSchema, collection: UserName },
+      { name: AdminName, schema: AdminSchema, collection: AdminName },
     ]),
     TelegramModule.forRootAsync({
       useFactory: async (configService: ConfigService) => ({

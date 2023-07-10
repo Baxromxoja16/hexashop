@@ -7,8 +7,9 @@ import {
   Body
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { AuthGuard, Public } from 'src/auth/guards/auth.guard';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { ContactDto } from './dto/contact.dto';
+import { AdminGuard } from 'src/auth/guards/admin.guard';
 
 @Controller('users')
 export class UsersController {
@@ -18,6 +19,8 @@ export class UsersController {
   // create(@Body() createUserDto: CreateUserDto) {
   //   return this.usersService.create(createUserDto);
   // }
+
+  @UseGuards(AdminGuard)
   @Get()
   findAll() {
     return this.usersService.findAll();

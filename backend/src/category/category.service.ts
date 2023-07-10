@@ -16,6 +16,7 @@ export class CategoryService {
   ) {}
 
   async create(createCategoryDto: CreateCategoryDto) {
+    await this.checkCategory(createCategoryDto)
     const category = await this.categoriesModel.create(createCategoryDto);
 
     return category;
@@ -45,5 +46,23 @@ export class CategoryService {
       return true;
     }
     throw new BadRequestException('Id is not valid');
+  }
+
+  private async checkCategory(createCategoryDto: CreateCategoryDto) {
+    const category = await this.categoriesModel.findOne({
+      name: createCategoryDto.name,
+    });
+
+    if (category) {
+      throw new BadRequestException('Category already exists');
+    }
+
+    const categoryImg = await this.categoriesModel.findOne({
+      img: createCategoryDto.img,
+    });
+
+    if (categoryImg) {
+      throw new BadRequestException('Category image already exists');
+    }
   }
 }

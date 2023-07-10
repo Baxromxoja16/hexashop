@@ -12,11 +12,13 @@ import { UserName, UserType } from './model/user.schema';
 import { Model, isValidObjectId } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { TelegramService, TelegramMessage } from 'nestjs-telegram';
+import { AdminName, AdminType } from './model/admin.schema';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(UserName) private userModel: Model<UserType>,
+    @InjectModel(AdminName) private adminModel: Model<AdminType>,
     private readonly telegram: TelegramService,
   ) {}
 
@@ -32,10 +34,28 @@ export class UsersService {
     };
   }
 
+  async adminCreate(createAdminDto: CreateUserDto) {
+    await this.isAdminExists(createAdminDto.phone);
+    createAdminDto.password = await bcrypt.hash(createAdminDto.password, 12);
+    const admin = await this.adminModel.create(createAdminDto);
+
+    return {
+      _id: admin._id,
+      phone: admin.phone,
+      name: admin.name,
+    };
+  }
+
   async findOneByPhone(phone: string) {
     const user = await this.userModel.findOne({ phone });
     if (!user) throw new ForbiddenException('Account is not found');
     return user;
+  }
+
+  async findAdminByPhone(phone: string) {
+    const admin = await this.adminModel.findOne({ phone });
+    if (!admin) throw new ForbiddenException('Account is not found');
+    return admin;
   }
 
   async findAll() {
@@ -82,6 +102,11 @@ export class UsersService {
 
   private async isExists(phone: string) {
     const user = await this.userModel.findOne({ phone });
+    if (user) throw new BadRequestException('User phone already exists');
+  }
+
+  private async isAdminExists(phone: string) {
+    const user = await this.adminModel.findOne({ phone });
     if (user) throw new BadRequestException('User phone already exists');
   }
 }

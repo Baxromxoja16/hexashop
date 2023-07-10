@@ -18,20 +18,27 @@ export class GoodsService {
   }
 
   async findAll() {
-    return await this.goodsModel.find().limit(20);
+    return await this.goodsModel.find().limit(9);
+  }
+
+  async findPage(page: number) {
+    return await this.goodsModel
+      .find()
+      .sort({ updatedAt: -1 })
+      .limit(9)
+      .skip(page * 9);
   }
 
   async findOne(id: string) {
-    await this.checkId(id);
+    this.checkId(id);
     const good = await this.goodsModel.findById(id);
     if (!good) throw new NotFoundException('Product is not found');
     return good;
   }
 
   async findCategory(categoryId: string) {
-    await this.checkId(categoryId);
-    const good = await this.goodsModel
-      .find({ category: categoryId })
+    this.checkId(categoryId);
+    const good = await this.goodsModel.find({ category: categoryId });
     if (!good) throw new NotFoundException('Product is not found');
     return good;
   }

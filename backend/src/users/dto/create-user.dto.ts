@@ -4,7 +4,8 @@ import {
   IsNotEmpty,
   MaxLength,
   MinLength,
-  IsPhoneNumber
+  IsPhoneNumber,
+  IsStrongPassword
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -31,8 +32,7 @@ export class CreateUserDto {
     example: '!nisfsf#@',
     description: 'pgone number for login',
   })
-  @IsString()
-  @MinLength(6)
+  @IsStrongPassword()
   @IsNotEmpty()
   password: string;
 }
