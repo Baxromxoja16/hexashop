@@ -652,7 +652,7 @@ banner
 
 .main-banner {
   border-bottom: 3px dotted #eee;
-  padding-top: 160px;
+  padding-top: 180px;
   padding-bottom: 30px;
 }
 
@@ -1913,7 +1913,7 @@ About Us Page
 */
 
 .about-page-heading {
-  margin-top: 160px;
+  margin-top: 180px;
   margin-bottom: 30px;
   background-image: url(../images/about-us-page-heading.jpg);
   background-position: center center;
