@@ -13,14 +13,13 @@ import { ProductsMoreService } from '../../services/products-more.service';
 export class HeaderComponent implements OnInit {
 
   subscription$: Subscription = new Subscription();
-  isLogin = this.authService.isLogin.value;
 
   countCarts = this.productsMoreService.cardData;
 
   constructor(private router: Router,
     private homeService: HomeService,
     private productsMoreService: ProductsMoreService,
-    private authService: AuthService) { }
+  ) { }
 
   ngOnInit(): void {
   }
@@ -30,11 +29,4 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/category']);
   }
 
-  logIn() {
-    if (!this.isLogin) {
-      this.router.navigate(['/login'])
-    }
-
-    this.authService.logout()
-  }
 }

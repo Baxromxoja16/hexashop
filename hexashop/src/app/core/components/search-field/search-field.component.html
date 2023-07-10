@@ -17,6 +17,7 @@
   <div
     class="bottom-actions__item actions-item actions-item__user"
     style="cursor: pointer"
+    (click)="logIn()"
   >
     <div class="actions-item__img" >
       <svg
@@ -45,6 +46,6 @@
         ></path>
       </svg>
     </div>
-    <a class="actions-item__text" routerLink="/login">Login</a>
+    <div class="actions-item__text" >{{ !isLogin.value ? "Login" : "Log out" }}</div>
   </div>
 </div>

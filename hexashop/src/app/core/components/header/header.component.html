@@ -27,16 +27,6 @@
                 >Cart <span class="count">{{ countCarts.length }}</span></a
               >
             </li>
-            <li class="scroll-to-section">
-              <button
-                class="btn btn-danger"
-                [ngClass]="{ 'btn-dark': !isLogin }"
-              >
-                <a class="login-btn" (click)="logIn()">
-                  {{ !isLogin ? "Login" : "Log out" }}
-                </a>
-              </button>
-            </li>
           </ul>
           <!-- ***** Menu End ***** -->
         </nav>
