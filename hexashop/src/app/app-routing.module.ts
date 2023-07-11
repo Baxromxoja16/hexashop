@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '', redirectTo: '/main', pathMatch: 'full'
   },
   {
-    path: '',  component: MainPageComponent, children: [
+    path: '', component: MainPageComponent, children: [
       {
         path: 'main', loadChildren: () => import('./main-page/home-page/home-page.module').then(m => m.HomePageModule)
       },
@@ -36,14 +36,15 @@ const routes: Routes = [
   },
   {
     path: '', component: AuthComponent, children: [
-      { path: 'login', component: LoginPageComponent},
+      { path: 'login', component: LoginPageComponent },
+      { path: 'admin/login', title: 'admin', component: LoginPageComponent },
     ]
   },
   { path: '**', component: ErrorPageComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{preloadingStrategy: PreloadAllModules})],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
