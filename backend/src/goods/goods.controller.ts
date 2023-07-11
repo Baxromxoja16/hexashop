@@ -7,24 +7,25 @@ import {
   Param,
   Delete,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { GoodsService } from './goods.service';
 import { CreateGoodDto } from './dto/create-good.dto';
 import { UpdateGoodDto } from './dto/update-good.dto';
-import { AuthGuard, Public } from 'src/auth/guards/auth.guard';
+import { AdminGuard, PublicFromAdmin } from 'src/auth/guards/admin.guard';
 
-@UseGuards(AuthGuard)
+@UseGuards(AdminGuard)
 @Controller('goods')
 export class GoodsController {
   constructor(private readonly goodsService: GoodsService) {}
 
-  @Public()
+  @PublicFromAdmin()
   @Get()
   findAll() {
     return this.goodsService.findAll();
   }
 
-  @Public()
+  @PublicFromAdmin()
   @Get('/category/:categoryid')
   findCategory(@Param('categoryid') categoryId: string) {
     return this.goodsService.findCategory(categoryId);
@@ -39,19 +40,24 @@ export class GoodsController {
   //   return this.goodsService.findSubcategory(categoryId, subcategoryId);
   // }
 
-  @Public()
+  @PublicFromAdmin()
   @Get('/item/:id')
   findOne(@Param('id') id: string) {
     return this.goodsService.findOne(id);
   }
 
-  @Public()
+  @PublicFromAdmin()
+  @Get('/search')
+  search(@Query('name') name: string) {
+    return this.goodsService.search(name);
+  }
+
+  @PublicFromAdmin()
   @Get('/:page')
   pagination(@Param('id') id: string) {
     return this.goodsService.findPage(+id);
   }
 
-  @Public()
   @Post()
   create(@Body() createGoodDto: CreateGoodDto) {
     return this.goodsService.create(createGoodDto);

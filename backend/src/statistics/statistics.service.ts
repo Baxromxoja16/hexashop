@@ -33,7 +33,13 @@ export class StatisticsService {
           updatedAt: 1,
           availableAmount: 1,
           sold: 1,
+          category: 1,
           income: { $multiply: ['$sold', '$price'] },
+        },
+      },
+      {
+        $group: {
+          _id: '$category',
         },
       },
     ]);

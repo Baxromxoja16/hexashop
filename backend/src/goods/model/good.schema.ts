@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export const GoodsSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     imageUrls: [{ type: String, required: true }],
     availableAmount: { type: Number, required: true },
     sold: { type: Number, default: 0 },

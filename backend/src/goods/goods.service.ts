@@ -13,12 +13,17 @@ import { Model, isValidObjectId } from 'mongoose';
 export class GoodsService {
   constructor(@InjectModel(GoodsName) private goodsModel: Model<GoodsType>) {}
   async create(createGoodDto: CreateGoodDto) {
+    await this.checkIfExists(createGoodDto.name);
     const good = await this.goodsModel.create(createGoodDto);
     return good;
   }
 
   async findAll() {
     return await this.goodsModel.find().limit(9);
+  }
+
+  async search(name: string) {
+    return await this.goodsModel.find({ $text: { $search: name } });
   }
 
   async findPage(page: number) {
@@ -58,5 +63,11 @@ export class GoodsService {
       return true;
     }
     throw new BadRequestException('Id is not valid');
+  }
+
+  private async checkIfExists(name: string) {
+    const good = await this.goodsModel.findOne({ name });
+    if (!good)
+      throw new BadRequestException('Product with this name already exists');
   }
 }
