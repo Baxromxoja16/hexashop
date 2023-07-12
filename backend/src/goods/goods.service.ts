@@ -1,0 +1,73 @@
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
+import { CreateGoodDto } from './dto/create-good.dto';
+import { UpdateGoodDto } from './dto/update-good.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { GoodsName, GoodsType } from './model/good.schema';
+import { Model, isValidObjectId } from 'mongoose';
+
+@Injectable()
+export class GoodsService {
+  constructor(@InjectModel(GoodsName) private goodsModel: Model<GoodsType>) {}
+  async create(createGoodDto: CreateGoodDto) {
+    await this.checkIfExists(createGoodDto.name);
+    const good = await this.goodsModel.create(createGoodDto);
+    return good;
+  }
+
+  async findAll() {
+    return await this.goodsModel.find().limit(9);
+  }
+
+  async search(name: string) {
+    return await this.goodsModel.find({ $text: { $search: name } });
+  }
+
+  async findPage(page: number) {
+    return await this.goodsModel
+      .find()
+      .sort({ updatedAt: -1 })
+      .limit(9)
+      .skip(page * 9);
+  }
+
+  async findOne(id: string) {
+    this.checkId(id);
+    const good = await this.goodsModel.findById(id);
+    if (!good) throw new NotFoundException('Product is not found');
+    return good;
+  }
+
+  async findCategory(categoryId: string) {
+    this.checkId(categoryId);
+    const good = await this.goodsModel.find({ category: categoryId });
+    if (!good) throw new NotFoundException('Product is not found');
+    return good;
+  }
+
+  // async findSubcategory(categoryId: string, subcategoryId: string) {}
+
+  async update(id: string, updateGoodDto: UpdateGoodDto) {
+    return `This action updates a #${id} good`;
+  }
+
+  async remove(id: string) {
+    return `This action removes a #${id} good`;
+  }
+
+  private checkId(id: string) {
+    if (isValidObjectId(id)) {
+      return true;
+    }
+    throw new BadRequestException('Id is not valid');
+  }
+
+  private async checkIfExists(name: string) {
+    const good = await this.goodsModel.findOne({ name });
+    if (!good)
+      throw new BadRequestException('Product with this name already exists');
+  }
+}
