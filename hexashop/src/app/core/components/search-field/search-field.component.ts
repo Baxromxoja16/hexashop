@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class SearchFieldComponent {
   isLogin = this.authService.isLogin;
 
+  phone = JSON.parse(localStorage.getItem('phone')!);
+
   constructor(private authService: AuthService,private router: Router) {}
 
   logIn() {

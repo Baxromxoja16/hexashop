@@ -1,9 +1,15 @@
 <form [formGroup]="createForm">
   <div class="mb-3">
-    <h3>Authentication</h3>
+    <h3>{{!switchTo ? 'Register': 'Login'}}</h3>
+  </div>
+  <div class="mb-3" *ngIf="!switchTo">
+    <label for="exampleInputName" class="form-label">Name</label>
+    <input formControlName="name" type="text" class="form-control" id="exampleInputName">
+    <span class="help-block"  *ngIf="createForm.controls['name'].errors?.['required']
+    && createForm.get('name')?.touched">Name is required</span>
   </div>
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Phone number</label>
+    <label for="exampleInputPhone" class="form-label">Phone number</label>
     <input formControlName="phone" type="text" class="form-control" id="exampleInputPhone">
     <span class="help-block"  *ngIf="createForm.controls['phone'].errors?.['pattern']
     && createForm.get('phone')?.touched" >Wrong number</span>
@@ -19,12 +25,8 @@
     <span class="help-block"  *ngIf="createForm.controls['password'].errors?.['pattern']
     && createForm.controls['password'].touched" >Wrong password <span>(uppercase, lowercase, number and special characters)</span></span>
   </div>
-  <div class="mb-3 form-check">
-    <input formControlName="check" type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    <span class="help-block d-block" *ngIf="createForm.controls['check'].errors?.['required']
-    && createForm.get('check')?.touched" >Check please</span>
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="(createForm.status === 'INVALID')" (click)="onSubmit('login')">Login</button>
-  <button type="submit" class="btn btn-primary ml-2" [disabled]="(createForm.status === 'INVALID')" (click)="onSubmit('register')">Register</button>
+  <button type="submit" *ngIf="switchTo === true" class="btn btn-primary" [disabled]="(createForm.status === 'INVALID')" (click)="onSubmit('login')">Login</button>
+  <button type="submit" *ngIf="switchTo === false" class="btn btn-primary ml-2" [disabled]="(createForm.status === 'INVALID')" (click)="onSubmit('register')">Register</button>
+  |
+  <button type="button" class="btn btn-primary" (click)="switchTo = !switchTo">{{switchTo ? 'Switch to Register' : 'Switch to Login'}}</button>
 </form>

@@ -10,8 +10,8 @@ export interface Login {
   check: boolean;
 }
 export interface TokenRes {
-  refToken: string;
-  token: string;
+  refreshToken: string;
+  accesToken: string;
 }
 export class Register {
   // number!: string;
