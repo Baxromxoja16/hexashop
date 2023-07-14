@@ -13,6 +13,7 @@ import { Model, isValidObjectId } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { TelegramService, TelegramMessage } from 'nestjs-telegram';
 import { AdminName, AdminType } from './model/admin.schema';
+import { BuyGoodsDto } from './dto/buy-good.dto';
 
 @Injectable()
 export class UsersService {
@@ -72,6 +73,23 @@ export class UsersService {
   async contactSend(contactDto: ContactDto): Promise<TelegramMessage> {
     const message = `
     <b>${contactDto.name}</b>\n<i>${contactDto.email}</i>\n${contactDto.message}\nType: <tg-emoji emoji-id="121323">🧑‍💼</tg-emoji>Client
+    `;
+    const chat_id = 635762695;
+    const res = await this.telegram
+      .sendMessage({ chat_id, text: message, parse_mode: 'html' })
+      .toPromise();
+    return res;
+  }
+
+  async buy(buyGoods: BuyGoodsDto) {
+    const message = `
+    <b>${buyGoods.name}</b>\n<i>${
+      buyGoods.phone
+    }</i>\n<b>List:</b>\n${(buyGoods.list.map((item) => {
+      return `   <b>name</b>: ${item.name}\n   <b>amount</b>: ${item.amount}\n   <b>price</b>: ${item.price}\n\n`;
+    })).join("")}<b>Total price</b>: $${
+      buyGoods.totalPrice
+    }\n<b>Type</b>: Customer Purchase <tg-emoji emoji-id="121323">🛒✅</tg-emoji>
     `;
     const chat_id = 635762695;
     const res = await this.telegram

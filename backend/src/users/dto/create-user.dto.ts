@@ -24,7 +24,6 @@ export class CreateUserDto {
     description: 'pgone number for login',
   })
   @IsPhoneNumber()
-  @MinLength(6)
   @IsNotEmpty()
   phone: string;
 
