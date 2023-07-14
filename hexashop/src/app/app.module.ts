@@ -3,23 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { HomePageComponent } from './main-page/home-page/home-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
-import { ProductsPageComponent } from './products-page/products-page.component';
-import { SingleProductPageComponent } from './single-product-page/single-product-page.component';
+import { ProductsPageComponent } from './main-page/products-page/products-page.component';
+import { SingleProductPageComponent } from './main-page/single-product-page/single-product-page.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { HeaderComponent } from './core/components/header/header.component';
-import { MainBannerComponent } from './home-page/components/main-banner/main-banner.component';
-import { ExploreComponent } from './home-page/components/explore/explore.component';
+import { MainBannerComponent } from './main-page/home-page/components/main-banner/main-banner.component';
+import { ExploreComponent } from './main-page/home-page/components/explore/explore.component';
 import { SubscribeComponent } from './core/components/subscribe/subscribe.component';
 import { PageHeadingComponent } from './core/components/page-heading/page-heading.component';
 import { AboutAreaComponent } from './about-page/components/about-area/about-area.component';
 import { OurTeamComponent } from './about-page/components/our-team/our-team.component';
 import { ContactUsComponent } from './contact-page/components/contact-us/contact-us.component';
-import { CartPageComponent } from './cart-page/cart-page.component';
+import { CartPageComponent } from './main-page/cart-page/cart-page.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CategoryPageComponent } from './category-page/category-page.component';
+import { CategoryPageComponent } from './main-page/category-page/category-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginPageComponent } from './auth/login-page/login-page.component';
+import { RegisterPageComponent } from './auth/register-page/register-page.component';
+import { AuthComponent } from './auth/auth.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -39,12 +44,17 @@ import { CategoryPageComponent } from './category-page/category-page.component';
     OurTeamComponent,
     ContactUsComponent,
     CartPageComponent,
-    CategoryPageComponent
+    CategoryPageComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
+    AuthComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

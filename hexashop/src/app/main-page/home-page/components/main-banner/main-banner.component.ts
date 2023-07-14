@@ -20,7 +20,6 @@ export class MainBannerComponent implements OnInit, OnDestroy {
     this.subscription$.add(
       this.homeService.getCategories().subscribe((val) => {
         this.categories = val;
-        console.log(this.categories);
       })
     )
   }
@@ -31,6 +30,6 @@ export class MainBannerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // this.subscription$.unsubscribe();
+    this.subscription$.unsubscribe();
   }
 }

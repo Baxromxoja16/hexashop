@@ -26,7 +26,6 @@ export class ProductsMoreService {
         // Valitation for localStorage
         if(this.cardData.length > 0) {
           const found = this.cardData.find((val) => val.id === id);
-          console.log(found);
           if(found === undefined) this.cardData.push(data);
         } else {
           this.cardData.push(data);

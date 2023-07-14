@@ -1,41 +1,44 @@
+<!-- ***** Main Banner Area Start ***** -->
 <app-page-heading [title]="title"></app-page-heading>
+<!-- ***** Main Banner Area End ***** -->
 
+<!-- ***** Products Area Starts ***** -->
 <section class="section" id="products">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
         <div class="section-heading">
-          <h2>Shopping cart</h2>
-          <span>Your favorite products</span>
+          <h2>Our Latest Products</h2>
+          <span>Check out all of our products.</span>
         </div>
       </div>
     </div>
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-lg-4" *ngFor="let data of cardData">
+      <div class="col-lg-4" *ngFor="let product of products">
         <div class="item">
           <div class="thumb">
             <div class="hover-content">
               <ul>
                 <li>
-                  <a (click)="view('more',data.id)"><i class="fa fa-eye"></i></a>
+                  <a (click)="productSee('more', product.id)"i class="fa fa-eye"></a>
                 </li>
                 <!-- <li>
                   <a routerLink="single-product"><i class="fa fa-star"></i></a>
                 </li> -->
                 <li>
-                  <a (click)="view('del',data.id)"
-                    ><i class="fa fa-trash"></i
+                  <a (click)="productSee('cart', product.id)"
+                    ><i class="fa fa-shopping-cart"></i
                   ></a>
                 </li>
               </ul>
             </div>
-            <img src="{{data.image.mid}}" alt="" />
+            <span class="bg-style" style="background: url({{product.image.mid}}); width: 305px; height: 280px; background-size: cover;" ></span>
           </div>
           <div class="down-content">
-            <h4>{{data.name}}</h4>
-            <span>${{data.price}}</span>
+            <h4>{{product.name}}</h4>
+            <span>${{product.price}}</span>
             <ul class="stars">
               <li><i class="fa fa-star"></i></li>
               <li><i class="fa fa-star"></i></li>
@@ -46,14 +49,24 @@
           </div>
         </div>
       </div>
+
       <div class="col-lg-12">
         <div class="pagination">
           <ul>
+            <li>
+              <a href="#">1</a>
+            </li>
             <li class="active">
-              <a >1</a>
+              <a href="#">2</a>
             </li>
             <li>
-              <a >></a>
+              <a href="#">3</a>
+            </li>
+            <li>
+              <a href="#">4</a>
+            </li>
+            <li>
+              <a href="#">></a>
             </li>
           </ul>
         </div>
@@ -61,3 +74,4 @@
     </div>
   </div>
 </section>
+<!-- ***** Products Area Ends ***** -->
