@@ -3,11 +3,11 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   UseGuards,
   Query,
+  Put,
 } from '@nestjs/common';
 import { GoodsService } from './goods.service';
 import { CreateGoodDto } from './dto/create-good.dto';
@@ -63,7 +63,7 @@ export class GoodsController {
     return this.goodsService.create(createGoodDto);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateGoodDto: UpdateGoodDto) {
     return this.goodsService.update(id, updateGoodDto);
   }

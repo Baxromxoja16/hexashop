@@ -67,7 +67,7 @@ export class GoodsService {
 
   private async checkIfExists(name: string) {
     const good = await this.goodsModel.findOne({ name });
-    if (!good)
+    if (good)
       throw new BadRequestException('Product with this name already exists');
   }
 }
