@@ -16,7 +16,7 @@ export class CategoryService {
   ) {}
 
   async create(createCategoryDto: CreateCategoryDto) {
-    await this.checkCategory(createCategoryDto)
+    await this.checkCategory(createCategoryDto);
     const category = await this.categoriesModel.create(createCategoryDto);
 
     return category;
@@ -34,11 +34,11 @@ export class CategoryService {
   }
 
   async update(id: string, updateCategoryDto: UpdateCategoryDto) {
-    return await this.categoriesModel.updateOne({ id }, updateCategoryDto);
+    return await this.categoriesModel.updateOne({ _id: id }, updateCategoryDto);
   }
 
   async remove(id: string) {
-    return await this.categoriesModel.deleteOne({ id });
+    return await this.categoriesModel.deleteOne({ _id: id });
   }
 
   private checkId(id: string) {
