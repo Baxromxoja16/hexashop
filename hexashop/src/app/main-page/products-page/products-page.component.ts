@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { LoaderService } from 'src/app/core/services/loader.service';
 import { Products } from '../../core/models/products.model';
 import { ProductsMoreService } from '../../core/services/products-more.service';
 import { ProductsService } from './services/products.service';
@@ -16,12 +17,14 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
 
   products: any = [];
 
-  constructor(private productsService: ProductsService, private productsMoreService: ProductsMoreService) { }
+  constructor(private productsService: ProductsService, private productsMoreService: ProductsMoreService, public loaderService: LoaderService) { }
 
   ngOnInit(): void {
+    this.loaderService.setLoading(true);
+
     this.subscription$.add(this.productsService.getCategoryProducts().subscribe((data) => {
-      console.log(data);
       this.products = data;
+      this.loaderService.setLoading(false);
     }))
   }
 

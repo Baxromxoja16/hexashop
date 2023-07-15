@@ -26,6 +26,7 @@ import { AuthComponent } from './auth/auth.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { SearchFieldComponent } from './core/components/search-field/search-field.component';
+import { LoadingSpinnerComponent } from './core/components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SearchFieldComponent } from './core/components/search-field/search-fiel
     AuthComponent,
     MainPageComponent,
     ErrorPageComponent,
-    SearchFieldComponent
+    SearchFieldComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
