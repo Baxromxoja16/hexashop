@@ -4,3 +4,15 @@
     color: black;
   }
 }
+/* Style the scrollbar background */
+::-webkit-scrollbar {
+  background: #ccc;
+  width: 4px;
+}
+
+/* Style the scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background: #444;
+  width: 4px;
+}
+

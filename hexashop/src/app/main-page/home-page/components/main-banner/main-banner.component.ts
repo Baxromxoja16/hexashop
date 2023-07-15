@@ -12,7 +12,7 @@ import { HomeService } from '../../services/home.service';
 export class MainBannerComponent implements OnInit, OnDestroy {
   subscription$: Subscription = new Subscription();
 
-  categories!: Categories;
+  categories!: any;
 
   constructor(private homeService: HomeService, private router: Router) { }
 

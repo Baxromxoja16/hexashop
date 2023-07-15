@@ -8,7 +8,7 @@ import { Products } from '../models/products.model';
   providedIn: 'root'
 })
 export class ProductsMoreService {
-  baseUrl = 'http://localhost:3004/';
+  baseUrl = 'https://hexashop-so83.onrender.com/';
 
   cardData: Products[] = JSON.parse(localStorage.getItem('card')!) || [];
 

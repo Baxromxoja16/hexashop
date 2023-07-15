@@ -12,7 +12,7 @@ const day = hour * 24;
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = 'http://localhost:8060/'
+  baseUrl = 'https://hexashop-so83.onrender.com/'
 
   tokenExpirationTimer: any;
 

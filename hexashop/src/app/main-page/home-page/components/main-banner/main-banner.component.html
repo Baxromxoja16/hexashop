@@ -13,10 +13,10 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-6">
-    <div class="right-content">
+  <div class="col-lg-6"  style="max-height: 600px; overflow-y: auto;">
+    <div class="right-content" >
       <div class="row">
-        <div class="col-lg-6" *ngFor="let category of categories?.subCategories">
+        <div class="col-lg-6" *ngFor="let category of categories">
           <div class="right-first-image">
             <div class="thumb">
               <div class="inner-content">
@@ -30,7 +30,7 @@
                   </div>
                 </div>
               </div>
-              <img src="{{category.image}}" />
+              <img src="{{category.img}}" />
             </div>
           </div>
         </div>
