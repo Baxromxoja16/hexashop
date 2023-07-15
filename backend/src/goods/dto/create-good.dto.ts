@@ -21,13 +21,13 @@ export class CreateGoodDto {
   @IsNumber()
   price: number;
 
-  @ApiProperty({ example: 'clothes', description: 'product category' })
+  @ApiProperty({ example: '121HVh34be238eg', description: 'product category id' })
   @IsString()
   category: string;
 
   @ApiProperty({
     example:
-      'Great product with availible price.\nJust by one and enjoy using it.',
+      'Great product with availible price.\nJust buy one and enjoy using it.',
     description: 'product category',
   })
   @IsString()

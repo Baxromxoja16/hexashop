@@ -14,6 +14,7 @@ export class GoodsService {
   constructor(@InjectModel(GoodsName) private goodsModel: Model<GoodsType>) {}
   async create(createGoodDto: CreateGoodDto) {
     await this.checkIfExists(createGoodDto.name);
+    this.checkId(createGoodDto.category);
     const good = await this.goodsModel.create(createGoodDto);
     return good;
   }
