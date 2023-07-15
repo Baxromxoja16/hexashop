@@ -19,30 +19,23 @@
             <div class="hover-content">
               <ul>
                 <li>
-                  <a (click)="view('more',data.id)"><i class="fa fa-eye"></i></a>
+                  <a (click)="view('more',data._id)"><i class="fa fa-eye"></i></a>
                 </li>
                 <!-- <li>
                   <a routerLink="single-product"><i class="fa fa-star"></i></a>
                 </li> -->
                 <li>
-                  <a (click)="view('del',data.id)"
+                  <a (click)="view('del',data._id)"
                     ><i class="fa fa-trash"></i
                   ></a>
                 </li>
               </ul>
             </div>
-            <span class="bg-style" style="background: url({{data.image.mid}}); width: 305px; height: 280px; background-size: cover;" ></span>
+            <span class="bg-style" style="background: url({{data.imageUrls}}); width: 305px; height: 280px; background-size: cover;" ></span>
           </div>
           <div class="down-content">
             <h4>{{data.name}}</h4>
             <span>${{data.price}}</span>
-            <ul class="stars">
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-            </ul>
           </div>
         </div>
       </div>

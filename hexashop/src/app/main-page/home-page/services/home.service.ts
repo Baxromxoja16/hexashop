@@ -24,7 +24,7 @@ export class HomeService implements OnInit {
   getClothes(category: string) {
     this.setLocalStorage(category);
 
-    return this.http.get<Products>(this.baseUrl + 'goods/category/clothes/' + category)
+    return this.http.get<Products>(this.baseUrl + 'goods/category/' + category)
       .pipe(tap((res) => {
         this.clothes$.next(res);
       }));

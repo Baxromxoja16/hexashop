@@ -8,31 +8,24 @@
             <div class="hover-content">
               <ul>
                 <li>
-                  <a (click)="productSee('more', product.id)"><i class="fa fa-eye"></i></a>
+                  <a (click)="productSee('more', product._id)"><i class="fa fa-eye"></i></a>
                 </li>
                 <!-- <li>
                   <a routerLink="/single-product"><i class="fa fa-star"></i></a>
                 </li> -->
                 <li>
-                  <a (click)="productSee('cart', product.id)"
+                  <a (click)="productSee('cart', product._id)"
                     ><i class="fa fa-shopping-cart"></i
                   ></a>
                 </li>
               </ul>
             </div>
             <!-- <img src="{{ product.image.mid }}" alt="" /> -->
-            <span class="bg-style" style="background: url({{product.image.mid}}); width: 305px; height: 280px; background-size: cover;" ></span>
+            <span class="bg-style" style="background: url({{product.imageUrls}}); width: 305px; height: 280px; background-size: cover;" ></span>
           </div>
           <div class="down-content">
             <h4>{{ product.name }}</h4>
             <span>${{ product.price }}</span>
-            <ul class="stars">
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-            </ul>
           </div>
         </div>
       </div>

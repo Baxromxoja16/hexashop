@@ -24,7 +24,7 @@ export class CartPageComponent implements OnInit, OnDestroy {
       this.productsMoreService.productsSee(param, id).subscribe();
       this.router.navigate(['/single-product']);
     } else {
-      const found = this.cardData.findIndex((data) => data.id === id);
+      const found = this.cardData.findIndex((data) => data._id === id);
       const deleted = this.cardData.splice(found, 1);
       localStorage.setItem('card', JSON.stringify(this.cardData));
     }

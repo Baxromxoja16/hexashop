@@ -13,7 +13,7 @@ import { HomeService } from '../home-page/services/home.service';
 export class CategoryPageComponent implements OnInit, OnDestroy {
   title = { title: 'Clothes', text: '', about: true };
 
-  products: Products[] = [];
+  products: any = [];
 
   subscription$: Subscription = new Subscription();
 

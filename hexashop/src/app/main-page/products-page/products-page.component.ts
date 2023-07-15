@@ -20,6 +20,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription$.add(this.productsService.getCategoryProducts().subscribe((data) => {
+      console.log(data);
       this.products = data;
     }))
   }
