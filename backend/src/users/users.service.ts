@@ -85,9 +85,11 @@ export class UsersService {
     const message = `
     <b>${buyGoods.name}</b>\n<i>${
       buyGoods.phone
-    }</i>\n<b>List:</b>\n${(buyGoods.list.map((item) => {
-      return `   <b>name</b>: ${item.name}\n   <b>amount</b>: ${item.amount}\n   <b>price</b>: ${item.price}\n\n`;
-    })).join("")}<b>Total price</b>: $${
+    }</i>\n<b>List:</b>\n${buyGoods.list
+      .map((item) => {
+        return `   <b>name</b>: ${item.name}\n   <b>amount</b>: ${item.amount}\n   <b>price</b>: ${item.price}\n\n`;
+      })
+      .join('')}<b>Total price</b>: $${
       buyGoods.totalPrice
     }\n<b>Type</b>: Customer Purchase <tg-emoji emoji-id="121323">🛒✅</tg-emoji>
     `;
@@ -100,15 +102,15 @@ export class UsersService {
 
   async update(id: string, updateUserDto: UpdateUserDto) {
     try {
-      const user = await this.userModel.updateOne({ _id: id }, updateUserDto);
+      const user = await this.userModel.findByIdAndUpdate(id, updateUserDto);
       return user;
     } catch (error) {
       return error;
     }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    return await this.userModel.deleteOne({ _id: id });
   }
 
   private checkId(id: string) {

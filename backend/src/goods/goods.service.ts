@@ -51,11 +51,11 @@ export class GoodsService {
   // async findSubcategory(categoryId: string, subcategoryId: string) {}
 
   async update(id: string, updateGoodDto: UpdateGoodDto) {
-    return `This action updates a #${id} good`;
+    return await this.goodsModel.findByIdAndUpdate(id, updateGoodDto);
   }
 
   async remove(id: string) {
-    return `This action removes a #${id} good`;
+    return await this.goodsModel.deleteOne({ _id: id });
   }
 
   private checkId(id: string) {

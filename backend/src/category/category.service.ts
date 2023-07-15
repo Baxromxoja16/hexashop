@@ -34,7 +34,9 @@ export class CategoryService {
   }
 
   async update(id: string, updateCategoryDto: UpdateCategoryDto) {
-    return await this.categoriesModel.updateOne({ _id: id }, updateCategoryDto);
+    const category = await this.categoriesModel.findOne({img: updateCategoryDto.img})
+    if(category) throw new BadRequestException("img already exists")
+    return await this.categoriesModel.findByIdAndUpdate(id, updateCategoryDto);
   }
 
   async remove(id: string) {
