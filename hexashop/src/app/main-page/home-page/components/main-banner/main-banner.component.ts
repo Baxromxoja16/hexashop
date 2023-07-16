@@ -1,9 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LoadingSpinnerComponent } from 'src/app/core/components/loading-spinner/loading-spinner.component';
 import { LoaderService } from 'src/app/core/services/loader.service';
-import { Categories } from '../../home-page.component';
 import { HomeService } from '../../services/home.service';
 
 @Component({

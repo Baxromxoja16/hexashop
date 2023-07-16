@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { LoaderService } from 'src/app/core/services/loader.service';
 import { Products } from '../../core/models/products.model';
 import { ProductsMoreService } from '../../core/services/products-more.service';
 
@@ -20,13 +21,15 @@ export class SingleProductPageComponent implements OnInit, OnDestroy {
   totalPrice = 0;
   productPrice = 0;
 
-  constructor(private productsMoreService: ProductsMoreService) { }
+  constructor(private productsMoreService: ProductsMoreService, private loaderService: LoaderService) { }
 
   ngOnInit(): void {
+    this.loaderService.setLoading(true);
     this.product$ = this.productsMoreService.productsSee('more', localStorage.getItem('productId')!);
     this.subscription.add(this.productsMoreService.productsSee('more', localStorage.getItem('productId')!).subscribe((data) => {
       this.productPrice = data.price;
       this.totalPrice = data.price;
+      this.loaderService.setLoading(false);
     }))
   }
 
