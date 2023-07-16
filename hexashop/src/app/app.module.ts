@@ -27,6 +27,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { SearchFieldComponent } from './core/components/search-field/search-field.component';
 import { LoadingSpinnerComponent } from './core/components/loading-spinner/loading-spinner.component';
+import { ClickOutDirective } from './core/directives/click-out.directive';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { LoadingSpinnerComponent } from './core/components/loading-spinner/loadi
     MainPageComponent,
     ErrorPageComponent,
     SearchFieldComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ClickOutDirective
   ],
   imports: [
     BrowserModule,

@@ -102,3 +102,13 @@
   line-height: 1.43;
   transition: all 0.3s ease 0s;
 }
+
+.result-field {
+  width: 100%;
+  height: 70vh;
+  background: rgba(255, 255, 255, .95);
+  padding: 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+}

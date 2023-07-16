@@ -1,19 +1,20 @@
 <div class="bottom-header__search" data-v-96830e5f="">
   <div class="search-wrapper"></div>
   <span class="btn-search"></span>
-  <div class="form-search">
+  <form class="form-search" [formGroup]="createForm">
     <input
       value=""
+      formControlName="search"
       class="form-search__input"
       placeholder="Поиск по каталогу"
       type="text"
     />
-    <button aria-label="Search button" class="form-search__btn">
+    <button (click)="searching()" aria-label="Search button" class="form-search__btn">
       <span>
         <img src="https://olcha.uz/_nuxt/search.2a234c15.svg" alt="search" />
       </span>
     </button>
-  </div>
+  </form>
   <div
     class="bottom-actions__item actions-item actions-item__user"
     style="cursor: pointer"
@@ -47,5 +48,38 @@
       </svg>
     </div>
     <div class="actions-item__text" >{{ !isLogin.value ? "Login" : phone }}</div>
+  </div>
+</div>
+
+<div (appClickOut)="openResultField = false" class="result-field" id="products" *ngIf="openResultField">
+  <h2 *ngIf=" searchResult.length <= 0">We didn't find what you were looking for</h2>
+  <div class="col-lg-4" *ngFor="let data of searchResult">
+    <div class="item">
+      <div class="thumb">
+        <div class="hover-content">
+          <ul>
+            <li>
+              <a (click)="view('more',data._id)"><i class="fa fa-eye"></i></a>
+            </li>
+            <!-- <li>
+              <a routerLink="single-product"><i class="fa fa-star"></i></a>
+            </li> -->
+            <li>
+              <a (click)="view('cart', data._id)"
+              ><i class="fa fa-shopping-cart"></i
+            ></a>
+            </li>
+          </ul>
+        </div>
+        <span
+         class="bg-style"
+         style="background: url({{data.imageUrls}}); width: 305px; height: 280px; background-size: cover; display: block;"
+         ></span>
+      </div>
+      <div class="down-content">
+        <h4>{{data.name}}</h4>
+        <span>${{data.price}}</span>
+      </div>
+    </div>
   </div>
 </div>
