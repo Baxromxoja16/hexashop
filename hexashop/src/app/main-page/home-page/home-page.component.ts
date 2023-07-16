@@ -24,11 +24,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
   constructor(private homeService: HomeService) { }
 
   ngOnInit(): void {
-    this.subscription$.add(
-      this.homeService.getCategories().subscribe((val) => {
-        this.categories = val;
-      })
-    )
+    // this.subscription$.add(
+    //   this.homeService.getCategories().subscribe((val) => {
+    //     this.categories = val;
+    //   })
+    // )
   }
 
   ngOnDestroy(): void {

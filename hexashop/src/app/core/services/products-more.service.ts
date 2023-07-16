@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
-import { Products } from '../models/products';
+import { Products } from '../models/products.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsMoreService {
-  baseUrl = 'http://localhost:3004/';
+  baseUrl = 'https://hexashop-so83.onrender.com/';
 
   cardData: Products[] = JSON.parse(localStorage.getItem('card')!) || [];
 
@@ -25,7 +25,7 @@ export class ProductsMoreService {
 
         // Valitation for localStorage
         if(this.cardData.length > 0) {
-          const found = this.cardData.find((val) => val.id === id);
+          const found = this.cardData.find((val) => val._id === id);
           if(found === undefined) this.cardData.push(data);
         } else {
           this.cardData.push(data);

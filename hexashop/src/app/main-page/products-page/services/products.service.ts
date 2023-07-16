@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProductsService {
-  baseUrl = 'http://localhost:3004/'
+  baseUrl = 'https://hexashop-so83.onrender.com/'
 
   constructor(private http: HttpClient) {}
 
   getCategoryProducts() {
-    return this.http.get(this.baseUrl + 'goods/category/clothes/');
+    return this.http.get(this.baseUrl + 'goods/category/');
   }
 }

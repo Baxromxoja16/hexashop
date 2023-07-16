@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Categories } from '../../home-page.component';
+import { LoaderService } from 'src/app/core/services/loader.service';
 import { HomeService } from '../../services/home.service';
 
 @Component({
@@ -12,16 +12,18 @@ import { HomeService } from '../../services/home.service';
 export class MainBannerComponent implements OnInit, OnDestroy {
   subscription$: Subscription = new Subscription();
 
-  categories!: Categories;
+  categories!: any;
 
-  constructor(private homeService: HomeService, private router: Router) { }
+  constructor(private homeService: HomeService, private router: Router, public loaderService: LoaderService) { }
 
   ngOnInit() {
+    this.loaderService.setLoading(true);
     this.subscription$.add(
       this.homeService.getCategories().subscribe((val) => {
         this.categories = val;
+        this.loaderService.setLoading(false);
       })
-    )
+    );
   }
 
   onDiscoverMore(id: string) {
