@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { ContactService, userMessage } from '../../services/contact.service';
 
 @Component({
@@ -7,7 +8,8 @@ import { ContactService, userMessage } from '../../services/contact.service';
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.scss']
 })
-export class ContactUsComponent {
+export class ContactUsComponent implements OnDestroy {
+  subscription$: Subscription = new Subscription();
 
   createForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.pattern(new RegExp('^[A-Za-z]+$'))]),
@@ -15,9 +17,13 @@ export class ContactUsComponent {
     message: new FormControl('', [Validators.required]),
   })
 
-  constructor(private contactService: ContactService){}
+  constructor(private contactService: ContactService) { }
 
   onSubmit() {
-    this.contactService.sendMessage(this.createForm.value as userMessage).subscribe(console.log);
+    this.subscription$.add(this.contactService.sendMessage(this.createForm.value as userMessage).subscribe(console.log));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 }

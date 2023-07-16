@@ -1,7 +1,10 @@
 <!-- ***** Main Banner Area Start ***** -->
 <app-page-heading [title]="title"></app-page-heading>
 <!-- ***** Main Banner Area End ***** -->
-
+<div *ngIf="confirmRes" class="alert alert-success" role="alert">
+  Thank you for your purchase! <br>
+  We will contact you shortly!
+</div>
 <!-- ***** Product Area Starts ***** -->
 <section class="section" id="product">
   <div class="container">
@@ -58,6 +61,9 @@
             <h4>Total: ${{ totalPrice }}</h4>
             <div class="main-border-button">
               <a (click)="addToCart()">Add To Cart</a>
+            </div>
+            <div class="main-border-button mt-3">
+              <a (click)="buy()">Buy now</a>
             </div>
           </div>
         </div>
