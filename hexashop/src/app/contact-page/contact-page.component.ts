@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 export class ContactPageComponent {
   title = { title: 'Contact page', text: 'Contact us', about: true }
 
+  
 }

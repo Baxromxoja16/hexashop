@@ -22,9 +22,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoryPageComponent } from './main-page/category-page/category-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
-import { RegisterPageComponent } from './auth/register-page/register-page.component';
 import { AuthComponent } from './auth/auth.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { SearchFieldComponent } from './core/components/search-field/search-field.component';
+import { LoadingSpinnerComponent } from './core/components/loading-spinner/loading-spinner.component';
+import { ClickOutDirective } from './core/directives/click-out.directive';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminPanelModule } from './admin-panel/admin-panel.module';
+
 
 @NgModule({
   declarations: [
@@ -46,15 +52,20 @@ import { MainPageComponent } from './main-page/main-page.component';
     CartPageComponent,
     CategoryPageComponent,
     LoginPageComponent,
-    RegisterPageComponent,
     AuthComponent,
-    MainPageComponent
+    MainPageComponent,
+    ErrorPageComponent,
+    SearchFieldComponent,
+    LoadingSpinnerComponent,
+    ClickOutDirective,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    AdminPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]

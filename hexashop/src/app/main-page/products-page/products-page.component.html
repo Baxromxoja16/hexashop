@@ -1,7 +1,3 @@
-<!-- ***** Main Banner Area Start ***** -->
-<app-page-heading [title]="title"></app-page-heading>
-<!-- ***** Main Banner Area End ***** -->
-
 <!-- ***** Products Area Starts ***** -->
 <section class="section" id="products">
   <div class="container">
@@ -22,30 +18,23 @@
             <div class="hover-content">
               <ul>
                 <li>
-                  <a (click)="productSee('more', product.id)"i class="fa fa-eye"></a>
+                  <a (click)="productSee('more', product._id)"i class="fa fa-eye"></a>
                 </li>
                 <!-- <li>
                   <a routerLink="single-product"><i class="fa fa-star"></i></a>
                 </li> -->
                 <li>
-                  <a (click)="productSee('cart', product.id)"
+                  <a (click)="productSee('cart', product._id)"
                     ><i class="fa fa-shopping-cart"></i
                   ></a>
                 </li>
               </ul>
             </div>
-            <span class="bg-style" style="background: url({{product.image.mid}}); width: 305px; height: 280px; background-size: cover;" ></span>
+            <span class="bg-style" style="background: url({{product.imageUrls}}); width: 305px; height: 280px; background-size: cover;" ></span>
           </div>
           <div class="down-content">
             <h4>{{product.name}}</h4>
             <span>${{product.price}}</span>
-            <ul class="stars">
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-              <li><i class="fa fa-star"></i></li>
-            </ul>
           </div>
         </div>
       </div>
@@ -53,17 +42,8 @@
       <div class="col-lg-12">
         <div class="pagination">
           <ul>
-            <li>
-              <a href="#">1</a>
-            </li>
             <li class="active">
-              <a href="#">2</a>
-            </li>
-            <li>
-              <a href="#">3</a>
-            </li>
-            <li>
-              <a href="#">4</a>
+              <a href="#">1</a>
             </li>
             <li>
               <a href="#">></a>

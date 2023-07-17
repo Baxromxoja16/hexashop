@@ -1,58 +1,70 @@
 <!-- ***** Main Banner Area Start ***** -->
 <app-page-heading [title]="title"></app-page-heading>
 <!-- ***** Main Banner Area End ***** -->
-
+<div *ngIf="confirmRes" class="alert alert-success" role="alert">
+  Thank you for your purchase! <br>
+  We will contact you shortly!
+</div>
 <!-- ***** Product Area Starts ***** -->
 <section class="section" id="product">
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
         <div class="left-images">
-          <img src="{{ (product$ | async)?.image?.big }}" alt="" />
+          <img src="{{ (product$ | async)?.imageUrls}}" alt="" />
         </div>
       </div>
       <div class="col-lg-4">
         <div class="right-content">
-          <h4>{{ (product$ | async)?.name }}</h4>
-          <span class="price">${{ (product$ | async)?.price }}</span>
-          <ul class="stars">
-            <li><i class="fa fa-star"></i></li>
-            <li><i class="fa fa-star"></i></li>
-            <li><i class="fa fa-star"></i></li>
-            <li><i class="fa fa-star"></i></li>
-            <li><i class="fa fa-star"></i></li>
-          </ul>
-          <span>{{ (product$ | async)?.description }}</span>
-          <!-- <div class="quote">
-                      <i class="fa fa-quote-left"></i><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiuski smod.</p>
-                  </div> -->
+          <h4>{{ (product$ | async)?.name}}</h4>
+          <span class="price">${{ (product$ | async)?.price}}</span>
+
+          <span>{{ (product$ | async)?.description}}</span>
+          <div class="quote">
+            Available Amount: {{ (product$ | async)?.availableAmount}}
+          </div>
           <div class="quantity-content">
             <div class="left-content">
               <h6>No. of Orders</h6>
             </div>
             <div class="right-content">
               <div class="quantity buttons_added">
-                <input (click)="amount('decriment')" type="button" value="-" class="minus" />
+                <input
+                  (click)="amount('decriment')"
+                  type="button"
+                  value="-"
+                  class="minus"
+                />
                 <input
                   type="number"
                   step="1"
                   min="1"
                   name="quantity"
-                  value="{{count}}"
+                  value="{{ count }}"
                   title="Qty"
                   class="input-text qty text"
                   size="4"
                   pattern=""
                   inputmode=""
                 />
-                <input (click)="amount('incriment')" type="button" value="+" class="plus" />
+                <input
+                  (click)="amount('incriment')"
+                  type="button"
+                  value="+"
+                  class="plus"
+                />
               </div>
             </div>
-            <span class="price">Size: {{ (product$ | async)?.size }}</span>
+            <span class="price">Size: {{ (product$ | async)?.size}}</span>
           </div>
           <div class="total">
-            <h4>Total: ${{totalPrice}}</h4>
-            <div class="main-border-button"><a (click)="addToCart()">Add To Cart</a></div>
+            <h4>Total: ${{ totalPrice }}</h4>
+            <div class="main-border-button">
+              <a (click)="addToCart()">Add To Cart</a>
+            </div>
+            <div class="main-border-button mt-3">
+              <a (click)="buy()">Buy now</a>
+            </div>
           </div>
         </div>
       </div>
