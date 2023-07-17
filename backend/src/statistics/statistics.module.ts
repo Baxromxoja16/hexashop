@@ -1,3 +1,4 @@
+import { UserName, UserSchema } from './../users/model/user.schema';
 import { Module } from '@nestjs/common';
 import { StatisticsService } from './statistics.service';
 import { StatisticsController } from './statistics.controller';
@@ -9,6 +10,7 @@ import { CategoryName, CategorySchema } from 'src/category/model/category.schema
   imports: [
     MongooseModule.forFeature([
       { name: CategoryName, schema: CategorySchema, collection: CategoryName },
+      { name: UserName, schema: UserSchema, collection: UserName },
       { name: GoodsName, schema: GoodsSchema, collection: GoodsName },
     ]),
   ],
