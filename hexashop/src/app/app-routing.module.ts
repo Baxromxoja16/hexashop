@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminAuthComponent } from './auth/admin-auth/admin-auth.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
@@ -37,7 +39,11 @@ const routes: Routes = [
   {
     path: '', component: AuthComponent, children: [
       { path: 'login', component: LoginPageComponent },
-      { path: 'admin/login', title: 'admin', component: LoginPageComponent },
+      { path: 'admin-auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+    ]
+  },
+  {
+    path: 'admin', component: AdminPanelComponent, children: [
     ]
   },
   { path: '**', component: ErrorPageComponent }

@@ -28,6 +28,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { SearchFieldComponent } from './core/components/search-field/search-field.component';
 import { LoadingSpinnerComponent } from './core/components/loading-spinner/loading-spinner.component';
 import { ClickOutDirective } from './core/directives/click-out.directive';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminPanelModule } from './admin-panel/admin-panel.module';
 
 
 @NgModule({
@@ -55,13 +57,15 @@ import { ClickOutDirective } from './core/directives/click-out.directive';
     ErrorPageComponent,
     SearchFieldComponent,
     LoadingSpinnerComponent,
-    ClickOutDirective
+    ClickOutDirective,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    AdminPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]
