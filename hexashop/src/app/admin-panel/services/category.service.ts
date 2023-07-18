@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Categories, SubCategory } from '../modules/category.model';
@@ -9,12 +9,12 @@ import { Categories, SubCategory } from '../modules/category.model';
 export class CategoryService {
   baseUrl = 'https://hexashop-so83.onrender.com/'
 
-  allSubCategoriesChanged = new Subject<SubCategory[]>();
+  adminToken = JSON.parse(localStorage.getItem('admin-token')!);
 
-  allSubCategories = [
-    new SubCategory('Man'),
-    new SubCategory('Woman'),
-  ]
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Admin ${this.adminToken}`
+  });
 
   constructor(private http: HttpClient) { }
 
@@ -22,15 +22,15 @@ export class CategoryService {
     return this.http.get<Categories[]>(this.baseUrl + 'category');
   }
 
-  addCategory(data: any) { }
+  addCategory(data: any) {
+    return this.http.post(this.baseUrl + 'category', data, { headers: this.headers });
+  }
 
-  deleteCategory(id: string) { }
+  deleteCategory(id: string) {
+    return this.http.delete(this.baseUrl + 'category/' + id, { headers: this.headers });
+  }
 
   editCategory(id: string) { }
 
-  addSubCategories(category: string) {
-    this.allSubCategories.push(new SubCategory(category))
-    this.allSubCategoriesChanged.next(this.allSubCategories.slice());
-  }
 
 }

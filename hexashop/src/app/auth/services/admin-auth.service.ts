@@ -18,7 +18,7 @@ export class AdminAuthService {
 
   tokenExpirationTimer: any;
 
-  isLogin = new BehaviorSubject(localStorage.getItem('admin-token')! || false);
+  isLogin = new BehaviorSubject(JSON.parse(localStorage.getItem('admin-token')!) || false);
 
   headers = new HttpHeaders({"Content-Type": "application/json"})
 

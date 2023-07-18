@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AdminAuthService } from '../services/admin-auth.service';
@@ -8,7 +8,7 @@ import { AdminAuthService } from '../services/admin-auth.service';
   templateUrl: './admin-auth.component.html',
   styleUrls: ['./admin-auth.component.scss']
 })
-export class AdminAuthComponent {
+export class AdminAuthComponent implements OnInit, OnDestroy {
   switchTo = false;
   subscription$: Subscription = new Subscription();
 
@@ -42,6 +42,11 @@ export class AdminAuthComponent {
 
       this.subscription$.add(this.adminAuthService.register(data).subscribe());
     }
+  }
+
+  ngOnInit(): void {
+    console.log(localStorage.getItem('admin-token'));
+
   }
 
   ngOnDestroy(): void {
