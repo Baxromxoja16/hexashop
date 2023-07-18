@@ -18,7 +18,7 @@ export class AdminAuthService {
 
   tokenExpirationTimer: any;
 
-  isLogin = new BehaviorSubject(localStorage.getItem('token')! || false);
+  isLogin = new BehaviorSubject(localStorage.getItem('admin-token')! || false);
 
   headers = new HttpHeaders({"Content-Type": "application/json"})
 
@@ -47,7 +47,7 @@ export class AdminAuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('admin-token');
     this.isLogin.next(false);
   }
 

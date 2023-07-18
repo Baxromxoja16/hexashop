@@ -44,6 +44,10 @@ const routes: Routes = [
   },
   {
     path: 'admin', component: AdminPanelComponent, children: [
+      { path: 'dashboard', loadChildren: () => import('./admin-panel/pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { path: 'users', loadChildren: () => import('./admin-panel/pages/users/users.module').then(m => m.UsersModule) },
+      { path: 'category', loadChildren: () => import('./admin-panel/pages/category/category.module').then(m => m.CategoryModule) },
+      { path: 'products', loadChildren: () => import('./admin-panel/pages/products/products.module').then(m => m.ProductsModule) },
     ]
   },
   { path: '**', component: ErrorPageComponent }

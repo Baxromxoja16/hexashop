@@ -7,6 +7,8 @@ import { AdminHeaderComponent } from './components/admin-header/admin-header.com
 import { AdminFooterComponent } from './components/admin-footer/admin-footer.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CategoryComponent } from './pages/category/category.component';
+import { UsersComponent } from './pages/users/users.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { CategoryComponent } from './pages/category/category.component';
     AdminHeaderComponent,
     AdminFooterComponent,
     DashboardComponent,
-    CategoryComponent
+    CategoryComponent,
+    UsersComponent,
+    ProductsComponent
   ],
   imports: [
     CommonModule,
