@@ -11,10 +11,12 @@ import { CategoryService } from 'src/app/admin-panel/services/category.service';
   styleUrls: ['./category-form.component.scss']
 })
 export class CategoryFormComponent implements OnInit, OnDestroy {
+  imgRegex = new RegExp(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm)
+
   createCategory = new FormGroup({
     name: new FormControl(null, Validators.required),
-    image: new FormControl(null, Validators.required),
-    subCategory: this.fb.array([])
+    img: new FormControl(null, [Validators.required, Validators.pattern(this.imgRegex)]),
+    subCategories: this.fb.array([])
   })
 
   subscription: Subscription = new Subscription();
@@ -22,11 +24,10 @@ export class CategoryFormComponent implements OnInit, OnDestroy {
   constructor(private categoryService: CategoryService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-
   }
 
   get subCategoryForm() {
-    return this.createCategory.get('subCategory') as FormArray;
+    return this.createCategory.get('subCategories') as FormArray;
   }
 
   addSubCategry() {
@@ -39,7 +40,9 @@ export class CategoryFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.subscription.add(this.categoryService.addCategory(this.createCategory.value).subscribe());
+    if(this.createCategory.valid) {
+      this.subscription.add(this.categoryService.addCategory(this.createCategory.value).subscribe());
+    }
   }
 
   ngOnDestroy(): void {
