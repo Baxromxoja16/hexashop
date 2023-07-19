@@ -5,11 +5,11 @@ export interface Categories {
   subCategories: SubCategory[];
 }
 
-// export interface SubCategory {
-//   category: string;
-//   _id: string;
-// }
-
-export class SubCategory {
-  constructor(public category: string){}
+export interface SubCategory {
+  category: string;
+  _id: string;
 }
+
+// export class SubCategory {
+//   constructor(public category: string){}
+// }

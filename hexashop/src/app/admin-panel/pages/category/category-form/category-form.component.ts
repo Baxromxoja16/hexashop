@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Categories, SubCategory } from 'src/app/admin-panel/modules/category.model';
 import { CategoryService } from 'src/app/admin-panel/services/category.service';
 
 @Component({
@@ -7,12 +10,14 @@ import { CategoryService } from 'src/app/admin-panel/services/category.service';
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.scss']
 })
-export class CategoryFormComponent implements OnInit {
+export class CategoryFormComponent implements OnInit, OnDestroy {
   createCategory = new FormGroup({
     name: new FormControl(null, Validators.required),
     image: new FormControl(null, Validators.required),
     subCategory: this.fb.array([])
   })
+
+  subscription: Subscription = new Subscription();
 
   constructor(private categoryService: CategoryService, private fb: FormBuilder) { }
 
@@ -34,7 +39,11 @@ export class CategoryFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.categoryService.addCategory(this.createCategory.value);
+    this.subscription.add(this.categoryService.addCategory(this.createCategory.value).subscribe());
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
   }
 }
 

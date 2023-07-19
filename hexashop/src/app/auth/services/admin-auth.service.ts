@@ -20,19 +20,19 @@ export class AdminAuthService {
 
   isLogin = new BehaviorSubject(JSON.parse(localStorage.getItem('admin-token')!) || false);
 
-  headers = new HttpHeaders({"Content-Type": "application/json"})
+  headers = new HttpHeaders({ "Content-Type": "application/json" })
 
   constructor(private http: HttpClient, private router: Router) { }
 
   login(data: any) {
-    return this.http.post<TokenRes>(this.baseUrl + 'auth/login/auth/admin', JSON.stringify(data), {headers:this.headers}).pipe(tap(res => {
+    return this.http.post<TokenRes>(this.baseUrl + 'auth/login/auth/admin', JSON.stringify(data), { headers: this.headers }).pipe(tap(res => {
       this.handleAuthentication(res.accesToken, res.refreshToken, data);
       this.router.navigate(['/admin']);
     }))
   }
 
   register(data: any) {
-    return this.http.post<TokenRes>(this.baseUrl + 'auth/register/auth/admin', JSON.stringify(data), {headers:this.headers}).pipe(tap(res => {
+    return this.http.post<TokenRes>(this.baseUrl + 'auth/register/auth/admin', JSON.stringify(data), { headers: this.headers }).pipe(tap(res => {
       this.handleAuthentication(res.accesToken, res.refreshToken, data);
       this.router.navigate(['/admin']);
     }))
@@ -55,5 +55,12 @@ export class AdminAuthService {
     setTimeout(() => {
       this.logout();
     }, exprestionTimer);
+  }
+
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem('admin-token')!;
+    // Check whether the token is expired and return
+    // true or false
+    return !token;
   }
 }

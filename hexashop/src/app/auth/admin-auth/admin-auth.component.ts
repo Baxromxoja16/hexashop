@@ -45,8 +45,6 @@ export class AdminAuthComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('admin-token'));
-
   }
 
   ngOnDestroy(): void {

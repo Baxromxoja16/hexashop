@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminAuthService } from 'src/app/auth/services/admin-auth.service';
 
 @Component({
@@ -8,9 +9,10 @@ import { AdminAuthService } from 'src/app/auth/services/admin-auth.service';
 })
 export class AdminHeaderComponent {
 
-  constructor(private adminAuthService: AdminAuthService){}
+  constructor(private adminAuthService: AdminAuthService, private router: Router){}
 
   logout() {
     this.adminAuthService.logout();
+    this.router.navigate(['/auth/admin']);
   }
 }
