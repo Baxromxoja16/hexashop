@@ -14,6 +14,8 @@ export class CategoryComponent implements OnInit, OnDestroy {
 
   subscription$: Subscription = new Subscription();
 
+  editCategoryData!: Categories;
+
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
@@ -22,12 +24,14 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   edit(id: string) {
+    this.subscription$.add(this.categoryService.editCategory(id).subscribe((data) => {
+      this.editCategoryData = data;
+      console.log(this.editCategoryData);
+    }))
   }
 
   deleteCategory(id: string) {
-    this.subscription$.add(this.categoryService.deleteCategory(id).subscribe())
-    this.subscription$.add(this.categoryService.getCategories()
-    .subscribe((data: Categories[]) => this.categories = data));
+    this.subscription$.add(this.categoryService.deleteCategory(id).subscribe());
   }
 
   ngOnDestroy(): void {

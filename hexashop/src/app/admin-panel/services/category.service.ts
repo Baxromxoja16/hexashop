@@ -30,7 +30,9 @@ export class CategoryService {
     return this.http.delete(this.baseUrl + 'category/' + id, { headers: this.headers });
   }
 
-  editCategory(id: string) { }
+  editCategory(id: string) {
+    return this.http.put<Categories>(this.baseUrl + 'category/' + id, { headers: this.headers });
+  }
 
 
 }
