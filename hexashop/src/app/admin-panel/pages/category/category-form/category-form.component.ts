@@ -14,16 +14,19 @@ export class CategoryFormComponent implements OnInit, OnDestroy {
   imgRegex = new RegExp(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm)
 
   createCategory = new FormGroup({
-    name: new FormControl(null, Validators.required),
-    img: new FormControl(null, [Validators.required, Validators.pattern(this.imgRegex)]),
+    name: new FormControl('', Validators.required),
+    img: new FormControl('', [Validators.required, Validators.pattern(this.imgRegex)]),
     subCategories: this.fb.array([])
   })
 
+  editCategory!: Categories
+
   subscription: Subscription = new Subscription();
 
-  constructor(private categoryService: CategoryService, private fb: FormBuilder) { }
+  constructor(public categoryService: CategoryService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    // console.log(this.categoryService.categoryChanged$);
   }
 
   get subCategoryForm() {
@@ -37,6 +40,17 @@ export class CategoryFormComponent implements OnInit, OnDestroy {
 
   deleteSubCategory(id: number) {
     this.subCategoryForm.removeAt(id);
+  }
+
+  initEditCategory() {
+    this.categoryService.categoryChanged$.subscribe(data => {
+      this.createCategory.patchValue({
+        name: data.name,
+        img: data.img,
+        subCategories: [...data.subCategories],
+      })
+      console.log(this.createCategory.value);
+    })
   }
 
   onSubmit() {

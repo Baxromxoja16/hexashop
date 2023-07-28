@@ -24,10 +24,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   edit(id: string) {
-    this.subscription$.add(this.categoryService.editCategory(id).subscribe((data) => {
-      this.editCategoryData = data;
-      console.log(this.editCategoryData);
-    }))
+    this.subscription$.add(this.categoryService.editCategory(id).subscribe())
   }
 
   deleteCategory(id: string) {

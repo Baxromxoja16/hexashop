@@ -1,26 +1,75 @@
-
 <form class="mb-3" [formGroup]="createCategory" (submit)="onSubmit()">
   <div class="mb-3">
     <label for="name" class="form-label">Category name</label>
-    <input type="text" class="form-control" id="name" formControlName="name" />
-    <span class="help-block" *ngIf="createCategory.controls['name'].errors?.['required']
-    && createCategory.get('name')?.touched">Name is required</span>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      formControlName="name"
+
+    />
+    <span
+      class="help-block"
+      *ngIf="createCategory.controls['name'].errors?.['required']
+    && createCategory.get('name')?.touched"
+      >Name is required</span
+    >
   </div>
   <div class="mb-3">
     <label for="image" class="form-label">Category image</label>
-    <input type="text" class="form-control" id="image" formControlName="img" />
-    <span class="help-block" *ngIf="createCategory.controls['img'].errors?.['pattern']
-    && createCategory.get('img')?.touched">Image must link</span>
-    <span class="help-block" *ngIf="createCategory.controls['img'].errors?.['required']
-    && createCategory.get('img')?.touched">Image is required</span>
+    <input
+      type="text"
+      class="form-control"
+      id="image"
+      formControlName="img"
+    />
+    <span
+      class="help-block"
+      *ngIf="createCategory.controls['img'].errors?.['pattern']
+    && createCategory.get('img')?.touched"
+      >Image must link</span
+    >
+    <span
+      class="help-block"
+      *ngIf="createCategory.controls['img'].errors?.['required']
+    && createCategory.get('img')?.touched"
+      >Image is required</span
+    >
   </div>
   <div class="sub-category mb-3" formArrayName="subCategories">
-    <div class="mb-3 col-6"*ngFor="let subCategory of subCategoryForm.controls let i=index" [formGroupName]="i">
+    <div
+      class="mb-3 col-6"
+      *ngFor="let subCategory of subCategoryForm.controls; let i = index"
+      [formGroupName]="i"
+    >
       <label for="subCategory" class="form-label">Sub Category</label>
-      <input type="text" class="form-control" id="subCategory" formControlName="category" />
-      <button type="button" class="btn btn-danger mt-2 ml-2" (click)="deleteSubCategory(i)" >Delete Sub Category</button>
+      <input
+        type="text"
+        class="form-control"
+        id="subCategory"
+        formControlName="category"
+      />
+      <button
+        type="button"
+        class="btn btn-danger mt-2 ml-2"
+        (click)="deleteSubCategory(i)"
+      >
+        Delete Sub Category
+      </button>
     </div>
-    <button type="button" class="btn btn-success mt-2" (click)="addSubCategry()">Add Sub Category</button>
+    <button
+      type="button"
+      class="btn btn-success mt-2"
+      (click)="addSubCategry()"
+    >
+      Add Sub Category
+    </button>
   </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!this.createCategory.valid" >Create Category</button>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="!this.createCategory.valid"
+  >
+    Create Category
+  </button>
 </form>

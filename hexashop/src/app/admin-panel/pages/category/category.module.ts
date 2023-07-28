@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule.forChild([
       { path: '', component: CategoryComponent },
       { path: 'new', component: CategoryFormComponent },
+      { path: 'edit', component: CategoryFormComponent },
     ])
   ]
 })

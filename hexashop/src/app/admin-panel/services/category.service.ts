@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
+import { Subject, tap } from 'rxjs';
 import { Categories, SubCategory } from '../modules/category.model';
 
 @Injectable({
@@ -16,7 +17,9 @@ export class CategoryService {
     'Authorization': `Admin ${this.adminToken}`
   });
 
-  constructor(private http: HttpClient) { }
+  categoryChanged$: Subject<Categories> = new Subject<Categories>();
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   getCategories() {
     return this.http.get<Categories[]>(this.baseUrl + 'category');
@@ -31,7 +34,10 @@ export class CategoryService {
   }
 
   editCategory(id: string) {
-    return this.http.put<Categories>(this.baseUrl + 'category/' + id, { headers: this.headers });
+    return this.http.get<Categories>(this.baseUrl + 'category/' + id, { headers: this.headers }).pipe(tap(data => {
+      this.categoryChanged$.next(data);
+      this.router.navigate(['/admin/category/edit']);
+    }));
   }
 
 
