@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Products } from 'src/app/core/models/products.model';
+import { Product, Products } from 'src/app/core/models/products.model';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
@@ -13,14 +14,24 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   products!: Products[]
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService, private router: Router) { }
 
   ngOnInit(): void {
     this.subscription.add(this.productsService.getProducts().subscribe(data => {
-      console.log(data);
       this.products = data;
     }))
   }
+
+  settings(mode: string, id: string) {
+
+    if (mode === 'edit') {
+      this.router.navigate(['/admin/products/' +'edit/' + id])
+    }
+
+  }
+
+
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }

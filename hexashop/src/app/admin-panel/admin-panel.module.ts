@@ -9,6 +9,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,10 +21,12 @@ import { ProductsComponent } from './pages/products/products.component';
     DashboardComponent,
     CategoryComponent,
     UsersComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductsFormComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
         path: '', component: AdminPanelComponent

@@ -1,30 +1,21 @@
 <div class="container">
+  <!-- <a class="btn btn-success mb-3" routerLink="/admin/goods/new">Create Category</a> -->
   <div class="row">
-    <div class="col-lg-4" *ngFor="let product of products">
+    <div class="col-lg-4" *ngFor="let product of products; let i = index">
       <div class="item">
         <div class="thumb">
-          <div class="hover-content">
-            <ul>
-              <li>
-                <!-- <a (click)="productSee('more', product._id)"i class="fa fa-eye"></a> -->
-              </li>
-              <!-- <li>
-                <a routerLink="single-product"><i class="fa fa-star"></i></a>
-              </li> -->
-              <li>
-                <!-- <a (click)="productSee('cart', product._id)"
-                  ><i class="fa fa-shopping-cart"></i
-                ></a> -->
-              </li>
-            </ul>
-          </div>
-          <span class="bg-style" style="background: url({{product.imageUrls[0]}}); width: 305px; height: 280px; background-size: cover;" ></span>
+          <span
+            class="bg-style"
+            style="background: url({{product.imageUrls[0]}}); width: 305px; height: 280px; background-size: cover;"
+          ></span>
         </div>
         <div class="down-content">
           <h4>{{product.name}}</h4>
           <span>${{product.price}}</span>
         </div>
       </div>
+      <button class="btn btn-success" (click)="settings('edit', product._id)">Edit</button>
+      <button class="btn btn-danger ml-3" (click)="settings('del', product._id)">Delete</button>
     </div>
   </div>
 </div>

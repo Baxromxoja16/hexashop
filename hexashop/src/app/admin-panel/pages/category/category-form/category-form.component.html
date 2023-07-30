@@ -1,13 +1,7 @@
 <form class="mb-3" [formGroup]="createCategory" (submit)="onSubmit()">
   <div class="mb-3">
     <label for="name" class="form-label">Category name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="name"
-      formControlName="name"
-
-    />
+    <input type="text" class="form-control" id="name" formControlName="name" />
     <span
       class="help-block"
       *ngIf="createCategory.controls['name'].errors?.['required']
@@ -17,12 +11,7 @@
   </div>
   <div class="mb-3">
     <label for="image" class="form-label">Category image</label>
-    <input
-      type="text"
-      class="form-control"
-      id="image"
-      formControlName="img"
-    />
+    <input type="text" class="form-control" id="image" formControlName="img" />
     <span
       class="help-block"
       *ngIf="createCategory.controls['img'].errors?.['pattern']
