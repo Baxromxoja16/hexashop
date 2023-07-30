@@ -95,5 +95,13 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  addImage() {
+    const imageGr = new FormControl('', Validators.required);
+    this.imageUrls.controls.push(imageGr);
+  }
+
+  get imageUrls() {
+    return this.createGoods.get('imageUrls') as FormArray;
+  }
 
 }

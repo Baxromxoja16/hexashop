@@ -9,26 +9,29 @@
       >Name is required</span
     >
   </div>
-  <div class="mb-3" >
+  <div class="mb-3" formArrayName="imageUrls">
+    <div *ngFor="let img of imageUrls.controls; let i=index" >
       <label for="imageUrls" class="form-label">Category image</label>
       <input
         type="text"
         class="form-control"
         id="imageUrls"
-        formArrayName="imageUrls"
+        formControlName="{{i}}"
       />
-      <span
-        class="help-block"
-        *ngIf="createGoods.controls['imageUrls']?.errors?.['pattern']
+    </div>
+    <button class="btn btn-success" type="button" (click)="addImage()">Add image input</button>
+    <span
+      class="help-block"
+      *ngIf="createGoods.controls['imageUrls']?.errors?.['pattern']
     && createGoods.get('imageUrls')?.touched"
-        >Image must link</span
-      >
-      <span
-        class="help-block"
-        *ngIf="createGoods.controls['imageUrls']?.errors?.['required']
+      >Image must link</span
+    >
+    <span
+      class="help-block"
+      *ngIf="createGoods.controls['imageUrls']?.errors?.['required']
     && createGoods.get('imageUrls')?.touched"
-        >Image is required</span
-      >
+      >Image is required</span
+    >
   </div>
   <div class="mb-3">
     <label for="image" class="form-label">Category Available Amount</label>
@@ -77,8 +80,14 @@
   </div>
   <div class="mb-3">
     <label for="" class="form-label">Categories</label>
-    <select formControlName="category" class="form-select form-select-lg mb-3 d-block" aria-label=".form-select-lg example">
-      <option *ngFor="let category of categories" value="{{category._id}}">{{category.name}}</option>
+    <select
+      formControlName="category"
+      class="form-select form-select-lg mb-3 d-block"
+      aria-label=".form-select-lg example"
+    >
+      <option *ngFor="let category of categories" value="{{ category._id }}">
+        {{ category.name }}
+      </option>
     </select>
     <span
       class="help-block"
