@@ -30,7 +30,15 @@ export class ProductsService {
     return this.products.filter((val: Product) => val._id === index);
   }
 
+  postProduct(data: Product) {
+    return this.http.post(this.baseUrl + 'goods/', JSON.stringify(data), { headers: this.headers })
+  }
+
   updateProduct(data: Product, id: string) {
     return this.http.put(this.baseUrl + 'goods/' + id, JSON.stringify(data), { headers: this.headers })
+  }
+
+  deleteProduct(id: string) {
+    return this.http.delete(this.baseUrl + 'goods/' + id, { headers: this.headers })
   }
 }

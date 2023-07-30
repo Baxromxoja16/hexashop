@@ -23,14 +23,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   settings(mode: string, id: string) {
-
     if (mode === 'edit') {
-      this.router.navigate(['/admin/products/' +'edit/' + id])
+      this.router.navigate(['/admin/products/' + 'edit/' + id])
+    } else if (mode === 'del') {
+      this.subscription.add(this.productsService.deleteProduct(id).subscribe(() => {
+        this.router.navigate(['/admin/products/']);
+      }));
     }
-
   }
-
-
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe()

@@ -33,7 +33,7 @@
   <div class="mb-3">
     <label for="image" class="form-label">Category Available Amount</label>
     <input
-      type="text"
+      type="number"
       class="form-control"
       id="image"
       formControlName="availableAmount"
@@ -42,7 +42,7 @@
       class="help-block"
       *ngIf="createGoods.controls['availableAmount']?.errors?.['required']
     && createGoods.get('availableAmount')?.touched"
-      >Image must link</span
+      >Amount is required</span
     >
   </div>
   <div class="mb-3">
@@ -55,15 +55,15 @@
     />
     <span
       class="help-block"
-      *ngIf="createGoods.controls['img']?.errors?.['required']
-    && createGoods.get('img')?.touched"
+      *ngIf="createGoods.controls['description']?.errors?.['required']
+    && createGoods.get('description')?.touched"
       >Image is required</span
     >
   </div>
   <div class="mb-3">
     <label for="price" class="form-label">Price</label>
     <input
-      type="text"
+      type="number"
       class="form-control"
       id="price"
       formControlName="price"
@@ -73,6 +73,18 @@
       *ngIf="createGoods.controls['price']?.errors?.['required']
     && createGoods.get('price')?.touched"
       >Price is required</span
+    >
+  </div>
+  <div class="mb-3">
+    <label for="" class="form-label">Categories</label>
+    <select formControlName="category" class="form-select form-select-lg mb-3 d-block" aria-label=".form-select-lg example">
+      <option *ngFor="let category of categories" value="{{category._id}}">{{category.name}}</option>
+    </select>
+    <span
+      class="help-block"
+      *ngIf="createGoods.controls['category']?.errors?.['required']
+    && createGoods.get('category')?.touched"
+      >Choose category please</span
     >
   </div>
   <button type="submit" class="btn btn-primary" [disabled]="!createGoods.valid">

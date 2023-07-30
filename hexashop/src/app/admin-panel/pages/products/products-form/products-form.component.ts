@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Categories } from 'src/app/admin-panel/modules/category.model';
+import { CategoryService } from 'src/app/admin-panel/services/category.service';
 import { ProductsService } from 'src/app/admin-panel/services/products.service';
 import { Product } from 'src/app/core/models/products.model';
 
@@ -16,34 +18,55 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
   productId = ''
   name = '';
   img = this.fb.array([]);
-  availableAmount = 0;
-  price = 0;
+  availableAmount: null | number = null;
+  price: null | number = null;
   category = '';
   description = '';
 
+  categories: Categories[] = []
+
   subscription: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private productsService: ProductsService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private productsService: ProductsService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.subscription.add(this.route.params.subscribe((params) => {
+    this.categoryService.getCategories().subscribe(data => {
+      this.categories = data;
+    })
+
+    this.route.params.subscribe((params) => {
       this.productId = params['id'];
-      this.editMode = params['id'] !== null;
+      if (this.productId) {
+        this.editMode = params['id'] !== null;
+      }
       this.initForm();
-    }))
+    })
   }
 
   onSubmit() {
     if (this.createGoods.valid) {
       const good = this.createGoods.value;
-      this.subscription.add(this.productsService.updateProduct(good, this.productId).subscribe(data => {
-        this.router.navigate(['/admin/products']);
-      }));
+      console.log(good);
+      if (this.editMode) {
+        this.subscription.add(this.productsService.updateProduct(good, this.productId).subscribe(() => {
+          this.router.navigate(['/admin/products']);
+        }));
+      } else {
+        this.productsService.postProduct(good).subscribe(res => {
+          console.log(res);
+        });
+      }
     }
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
+    this.editMode = false;
   }
 
   private initForm() {
@@ -71,4 +94,6 @@ export class ProductsFormComponent implements OnInit, OnDestroy {
       'description': new FormControl(this.description, Validators.required),
     });
   }
+
+
 }
