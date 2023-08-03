@@ -1,3 +1,17 @@
 footer {
-  padding-left: 20vw;
+  padding: 20px 30px;
+  padding-left: 22vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.authors {
+  color: white;
+  font-weight: 600;
 }

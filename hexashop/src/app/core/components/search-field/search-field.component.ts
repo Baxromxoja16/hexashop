@@ -54,7 +54,7 @@ export class SearchFieldComponent implements OnInit, OnDestroy {
 
   logIn() {
     if (!this.isLogin.value) {
-      this.router.navigate(['/login'])
+      this.router.navigate(['/auth'])
     }
 
     this.authService.logout();

@@ -6,7 +6,7 @@
         <div class="thumb">
           <span
             class="bg-style"
-            style="background: url({{product.imageUrls[0]}}); width: 305px; height: 280px; background-size: cover;"
+            style="background: url({{product.imageUrls}}); width: 100%; height: 280px; background-size: cover;"
           ></span>
         </div>
         <div class="down-content">
@@ -15,7 +15,7 @@
         </div>
       </div>
       <button class="btn btn-success" (click)="settings('edit', product._id)">Edit</button>
-      <button class="btn btn-danger ml-3" (click)="settings('del', product._id)">Delete</button>
+      <button class="btn btn-danger ml-3" (click)="settings('del', product._id, i)">Delete</button>
     </div>
   </div>
 </div>

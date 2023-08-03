@@ -1,6 +1,6 @@
 <form class="mb-3" [formGroup]="createGoods" (ngSubmit)="onSubmit()">
   <div class="mb-3">
-    <label for="name" class="form-label">Category name</label>
+    <label for="name" class="form-label">Product name</label>
     <input type="text" class="form-control" id="name" formControlName="name" />
     <span
       class="help-block"
@@ -9,17 +9,17 @@
       >Name is required</span
     >
   </div>
-  <div class="mb-3" formArrayName="imageUrls">
-    <div *ngFor="let img of imageUrls.controls; let i=index" >
-      <label for="imageUrls" class="form-label">Category image</label>
+  <div class="mb-3">
+    <div>
+      <label for="imageUrls" class="form-label">Product image</label>
       <input
         type="text"
         class="form-control"
         id="imageUrls"
-        formControlName="{{i}}"
+        formControlName="imageUrls"
       />
     </div>
-    <button class="btn btn-success" type="button" (click)="addImage()">Add image input</button>
+    <!-- <button class="btn btn-success" type="button" (click)="addImage()">Add image input</button> -->
     <span
       class="help-block"
       *ngIf="createGoods.controls['imageUrls']?.errors?.['pattern']
@@ -34,7 +34,7 @@
     >
   </div>
   <div class="mb-3">
-    <label for="image" class="form-label">Category Available Amount</label>
+    <label for="image" class="form-label">Product Available Amount</label>
     <input
       type="number"
       class="form-control"

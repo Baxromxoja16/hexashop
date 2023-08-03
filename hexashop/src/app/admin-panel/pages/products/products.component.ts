@@ -22,10 +22,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }))
   }
 
-  settings(mode: string, id: string) {
+  settings(mode: string, id: string, index: number = 0) {
     if (mode === 'edit') {
       this.router.navigate(['/admin/products/' + 'edit/' + id])
     } else if (mode === 'del') {
+      this.products.splice(index, 1);
       this.subscription.add(this.productsService.deleteProduct(id).subscribe(() => {
         this.router.navigate(['/admin/products/']);
       }));

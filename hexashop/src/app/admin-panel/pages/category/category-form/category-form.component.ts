@@ -23,7 +23,7 @@ export class CategoryFormComponent implements OnInit, OnDestroy {
 
   subscription: Subscription = new Subscription();
 
-  constructor(public categoryService: CategoryService, private fb: FormBuilder) { }
+  constructor(public categoryService: CategoryService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     // console.log(this.categoryService.categoryChanged$);
@@ -55,7 +55,7 @@ export class CategoryFormComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if(this.createCategory.valid) {
-      this.subscription.add(this.categoryService.addCategory(this.createCategory.value).subscribe());
+      this.subscription.add(this.categoryService.addCategory(this.createCategory.value).subscribe(()=> this.router.navigate(['/admin/category'])));
     }
   }
 
