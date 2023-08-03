@@ -19,7 +19,7 @@ export const GoodsName = 'goods';
 export type GoodsType = {
   _id: string;
   name: string;
-  imageUrls: string[];
+  imageUrls: string;
   availableAmount: number;
   sold: number;
   price: number;
