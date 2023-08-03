@@ -7,10 +7,10 @@ export class CreateGoodDto {
   name: string;
 
   @ApiProperty({
-    example: ['https://google.com/asduy4DDiRe32432'],
+    example: 'https://google.com/asduy4DDiRe32432',
     description: 'product images',
   })
-  @IsArray()
+  @IsString()
   imageUrls: [];
 
   @ApiProperty({ example: 100, description: 'available product count' })
