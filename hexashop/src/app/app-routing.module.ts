@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminAuthComponent } from './auth/admin-auth/admin-auth.component';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuardGuard } from './auth/guards/auth-guard.guard';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -38,12 +39,15 @@ const routes: Routes = [
   },
   {
     path: '', component: AuthComponent, children: [
-      { path: 'login', component: LoginPageComponent },
-      { path: 'admin-auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+      { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
     ]
   },
   {
-    path: 'admin', component: AdminPanelComponent, children: [
+    path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuardGuard], children: [
+      { path: 'dashboard', canActivate: [AuthGuardGuard], loadChildren: () => import('./admin-panel/pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { path: 'users', canActivate: [AuthGuardGuard], loadChildren: () => import('./admin-panel/pages/users/users.module').then(m => m.UsersModule) },
+      { path: 'category', canActivate: [AuthGuardGuard], loadChildren: () => import('./admin-panel/pages/category/category.module').then(m => m.CategoryModule) },
+      { path: 'products', canActivate: [AuthGuardGuard], loadChildren: () => import('./admin-panel/pages/products/products.module').then(m => m.ProductsModule) },
     ]
   },
   { path: '**', component: ErrorPageComponent }

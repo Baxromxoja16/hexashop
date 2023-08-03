@@ -1,0 +1,102 @@
+<form class="mb-3" [formGroup]="createGoods" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="name" class="form-label">Category name</label>
+    <input type="text" class="form-control" id="name" formControlName="name" />
+    <span
+      class="help-block"
+      *ngIf="createGoods.controls['name']?.errors?.['required']
+    && createGoods.get('name')?.touched"
+      >Name is required</span
+    >
+  </div>
+  <div class="mb-3" formArrayName="imageUrls">
+    <div *ngFor="let img of imageUrls.controls; let i=index" >
+      <label for="imageUrls" class="form-label">Category image</label>
+      <input
+        type="text"
+        class="form-control"
+        id="imageUrls"
+        formControlName="{{i}}"
+      />
+    </div>
+    <button class="btn btn-success" type="button" (click)="addImage()">Add image input</button>
+    <span
+      class="help-block"
+      *ngIf="createGoods.controls['imageUrls']?.errors?.['pattern']
+    && createGoods.get('imageUrls')?.touched"
+      >Image must link</span
+    >
+    <span
+      class="help-block"
+      *ngIf="createGoods.controls['imageUrls']?.errors?.['required']
+    && createGoods.get('imageUrls')?.touched"
+      >Image is required</span
+    >
+  </div>
+  <div class="mb-3">
+    <label for="image" class="form-label">Category Available Amount</label>
+    <input
+      type="number"
+      class="form-control"
+      id="image"
+      formControlName="availableAmount"
+    />
+    <span
+      class="help-block"
+      *ngIf="createGoods.controls['availableAmount']?.errors?.['required']
+    && createGoods.get('availableAmount')?.touched"
+      >Amount is required</span
+    >
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <input
+      type="text"
+      class="form-control"
+      id="description"
+      formControlName="description"
+    />
+    <span
+      class="help-block"
+      *ngIf="createGoods.controls['description']?.errors?.['required']
+    && createGoods.get('description')?.touched"
+      >Image is required</span
+    >
+  </div>
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input
+      type="number"
+      class="form-control"
+      id="price"
+      formControlName="price"
+    />
+    <span
+      class="help-block"
+      *ngIf="createGoods.controls['price']?.errors?.['required']
+    && createGoods.get('price')?.touched"
+      >Price is required</span
+    >
+  </div>
+  <div class="mb-3">
+    <label for="" class="form-label">Categories</label>
+    <select
+      formControlName="category"
+      class="form-select form-select-lg mb-3 d-block"
+      aria-label=".form-select-lg example"
+    >
+      <option *ngFor="let category of categories" value="{{ category._id }}">
+        {{ category.name }}
+      </option>
+    </select>
+    <span
+      class="help-block"
+      *ngIf="createGoods.controls['category']?.errors?.['required']
+    && createGoods.get('category')?.touched"
+      >Choose category please</span
+    >
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!createGoods.valid">
+    Create Product
+  </button>
+</form>

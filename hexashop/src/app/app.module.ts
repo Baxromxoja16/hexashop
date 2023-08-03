@@ -29,45 +29,45 @@ import { SearchFieldComponent } from './core/components/search-field/search-fiel
 import { LoadingSpinnerComponent } from './core/components/loading-spinner/loading-spinner.component';
 import { ClickOutDirective } from './core/directives/click-out.directive';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { AdminPanelModule } from './admin-panel/admin-panel.module';
+import { AdminPanelModule } from "./admin-panel/admin-panel.module";
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomePageComponent,
-    AboutPageComponent,
-    ContactPageComponent,
-    ProductsPageComponent,
-    SingleProductPageComponent,
-    FooterComponent,
-    HeaderComponent,
-    MainBannerComponent,
-    ExploreComponent,
-    SubscribeComponent,
-    PageHeadingComponent,
-    AboutAreaComponent,
-    OurTeamComponent,
-    ContactUsComponent,
-    CartPageComponent,
-    CategoryPageComponent,
-    LoginPageComponent,
-    AuthComponent,
-    MainPageComponent,
-    ErrorPageComponent,
-    SearchFieldComponent,
-    LoadingSpinnerComponent,
-    ClickOutDirective,
-    AdminPanelComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    AdminPanelModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomePageComponent,
+        AboutPageComponent,
+        ContactPageComponent,
+        ProductsPageComponent,
+        SingleProductPageComponent,
+        FooterComponent,
+        HeaderComponent,
+        MainBannerComponent,
+        ExploreComponent,
+        SubscribeComponent,
+        PageHeadingComponent,
+        AboutAreaComponent,
+        OurTeamComponent,
+        ContactUsComponent,
+        CartPageComponent,
+        CategoryPageComponent,
+        LoginPageComponent,
+        AuthComponent,
+        MainPageComponent,
+        ErrorPageComponent,
+        SearchFieldComponent,
+        LoadingSpinnerComponent,
+        ClickOutDirective,
+        AdminPanelComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        AdminPanelModule
+    ]
 })
 export class AppModule { }
