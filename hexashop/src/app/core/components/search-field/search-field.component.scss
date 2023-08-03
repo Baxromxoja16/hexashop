@@ -1,0 +1,114 @@
+.bottom-header__search {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  padding: 0 40px 0 24px;
+  position: relative;
+  width: 100%;
+}
+.search-wrapper {
+  height: 0;
+  position: absolute;
+  transition: none;
+  width: 0;
+  z-index: 0;
+}
+.bottom-header__search .btn-search {
+  display: none;
+}
+.form-search {
+  background: #f2f2f2;
+  border: none;
+  border: 1px solid #f2f2f2;
+  border-radius: 12px;
+  display: flex;
+  padding: 1px;
+  position: relative;
+  width: 100%;
+}
+.form-search__btn,
+.form-search__input {
+  height: 44px;
+  transition: all 0.3s ease 0s;
+}
+.form-search__input {
+  font-feature-settings: "pnum" on, "lnum" on;
+  background-color: transparent;
+  color: #111;
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  min-width: 100px;
+  padding: 11px 24px;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+.form-search__btn {
+  align-items: center;
+  background: #2a2a2a;
+  border: 1px solid #f2f2f2;
+  border-radius: 12px;
+  color: #fff;
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 20px;
+  padding: 10px 24px;
+  text-align: center;
+  text-transform: uppercase;
+
+  &:focus {
+    outline: none;
+  }
+}
+.form-search__btn span {
+  height: 24px;
+  width: 24px;
+}
+.form-search__btn span img {
+  height: 24px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 24px;
+}
+// ====================
+
+.actions-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+}
+.actions-item__img {
+  align-items: center;
+  color: #111;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  position: relative;
+  width: 24px;
+}
+.actions-item__text {
+  color: #111;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  transition: all 0.3s ease 0s;
+}
+
+.result-field {
+  width: 100%;
+  height: 70vh;
+  background: rgba(255, 255, 255, .95);
+  padding: 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+}

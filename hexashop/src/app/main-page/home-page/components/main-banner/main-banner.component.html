@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-lg-6"  style="width: 100%; height: 100%;">
+    <div class="left-content" >
+      <div class="thumb">
+        <div class="inner-content">
+          <h4>We Are Hexashop</h4>
+          <span>Get the newest and quality products from us</span>
+          <div class="main-border-button">
+            <a routerLink="/products">Purchase Now!</a>
+          </div>
+        </div>
+        <img src="assets/images/left-banner-image.jpg" alt="" style="height: 100%;" />
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6"  style="height: 600px; overflow-y: auto;">
+    <div class="right-content" >
+      <div class="row">
+        <div class="col-lg-6" *ngFor="let category of categories">
+          <div class="right-first-image">
+            <div class="thumb">
+              <div class="inner-content">
+                <h4>{{category.name}}</h4>
+              </div>
+              <div class="hover-content">
+                <div class="inner">
+                  <h4>{{category.name}}</h4>
+                  <div class="main-border-button">
+                    <a (click)="onDiscoverMore(category._id)">Discover More</a>
+                  </div>
+                </div>
+              </div>
+              <img src="{{category.img}}" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

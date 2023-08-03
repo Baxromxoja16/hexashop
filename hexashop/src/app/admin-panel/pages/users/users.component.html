@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4" *ngFor="let user of users">
+      <h3>Name is {{user.name}}</h3>
+      <p>Phone Number: {{user.phone}} </p>
+      <p>Created At: {{user.createdAt | date}} </p>
+
+    </div>
+  </div>
+</div>

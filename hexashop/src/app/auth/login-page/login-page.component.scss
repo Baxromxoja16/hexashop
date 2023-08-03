@@ -1,0 +1,27 @@
+form {
+  backdrop-filter: blur(30px);
+  padding: 20px 25px;
+  border-radius: 10px;
+  color: white;
+
+  input {
+    background: transparent;
+    color: white;
+  }
+}
+.help-block {
+  color: red;
+  font-size: 12px;
+
+  span {
+    font-size: 10px;
+    display: block;
+  }
+}
+.ng-invalid.ng-touched{
+  border-color:red ;
+}
+.ng-valid.ng-touched.ng-dirty{
+  border-color:#7a7a7a !important;
+}
+

@@ -1,0 +1,39 @@
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- ***** Logo Start ***** -->
+          <a routerLink="/main" class="logo">
+            <img src="assets/images/logo.png" />
+          </a>
+          <!-- ***** Logo End ***** -->
+          <!-- ***** Menu Start ***** -->
+          <ul class="nav">
+            <li class="scroll-to-section">
+              <a routerLink="/main" routerLinkActive="active">Home</a>
+            </li>
+            <li class="scroll-to-section">
+              <a routerLinkActive="active" routerLink="/about">About Us</a>
+            </li>
+            <li class="scroll-to-section">
+              <a routerLinkActive="active" routerLink="/products">Products</a>
+            </li>
+            <li class="scroll-to-section">
+              <a routerLinkActive="active" routerLink="/contact">Contact Us</a>
+            </li>
+            <li class="scroll-to-section cart-count">
+              <a routerLink="/card" routerLinkActive="active"
+                >Cart <span class="count">{{ countCarts.length }}</span></a
+              >
+            </li>
+          </ul>
+          <!-- ***** Menu End ***** -->
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-2">
+    <app-search-field></app-search-field>
+  </div>
+</header>

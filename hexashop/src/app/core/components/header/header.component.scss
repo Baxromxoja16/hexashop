@@ -1,0 +1,38 @@
+a {
+  cursor: pointer;
+}
+li {
+  button {
+    padding: 0 10px;
+    a {
+      color: #fff;
+    }
+  }
+}
+.login-btn {
+  line-height: 12px;
+  height: auto;
+  line-height: auto;
+}
+
+.cart-count {
+  a {
+    display: flex !important;
+    align-items: center;
+    position: relative;
+  }
+}
+.count {
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  width: 15px;
+  height: 15px;
+  background: red;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+}
