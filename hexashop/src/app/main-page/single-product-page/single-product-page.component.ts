@@ -12,7 +12,7 @@ import { SingleBuyService } from './services/single-buy.service';
   styleUrls: ['./single-product-page.component.scss']
 })
 export class SingleProductPageComponent implements OnInit, OnDestroy {
-  title = { title: 'Products', text: 'Learn more about us', about: false }
+  title = { title: 'Single Product', text: 'Learn more about us', about: false }
 
   product$!: Observable<Products>;
 
