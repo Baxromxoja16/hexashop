@@ -31,8 +31,8 @@ export class GoodsService {
     return await this.goodsModel
       .find()
       .sort({ updatedAt: -1 })
-      .limit(9)
-      .skip(page * 9);
+      .skip(page * 9)
+      .limit(9);
   }
 
   async findOne(id: string) {
