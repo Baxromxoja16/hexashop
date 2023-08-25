@@ -31,7 +31,7 @@ export class GoodsService {
     return await this.goodsModel
       .find()
       .sort({ updatedAt: -1 })
-      .skip(page * 9)
+      .skip((page - 1) * 9)
       .limit(9);
   }
 
