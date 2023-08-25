@@ -1601,6 +1601,10 @@ Products Page
   font-style: italic;
 }
 
+#products {
+  margin-top: 200px;
+}
+
 #products .section-heading {
   text-align: center;
   margin-bottom: 60px;

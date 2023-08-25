@@ -10,8 +10,6 @@ import { HomeService } from '../home-page/services/home.service';
   styleUrls: ['./category-page.component.scss']
 })
 export class CategoryPageComponent implements OnInit, OnDestroy {
-  title = { title: 'Clothes', text: '', about: true };
-
   products: any = [];
 
   subscription$: Subscription = new Subscription();

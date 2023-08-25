@@ -30,6 +30,7 @@ import { LoadingSpinnerComponent } from './core/components/loading-spinner/loadi
 import { ClickOutDirective } from './core/directives/click-out.directive';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminPanelModule } from "./admin-panel/admin-panel.module";
+import { PaginationComponent } from './core/components/pagination/pagination.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { AdminPanelModule } from "./admin-panel/admin-panel.module";
         SearchFieldComponent,
         LoadingSpinnerComponent,
         ClickOutDirective,
-        AdminPanelComponent
+        AdminPanelComponent,
+        PaginationComponent
     ],
     providers: [],
     bootstrap: [AppComponent],
