@@ -20,7 +20,7 @@ export class GoodsService {
   }
 
   async findAll() {
-    return await this.goodsModel.find().limit(9);
+    return await this.goodsModel.find().limit(21);
   }
 
   async search(name: string) {
