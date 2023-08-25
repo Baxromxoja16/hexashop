@@ -21,6 +21,7 @@
 ## Для запуска коды Веб интерфейса(UI):
 
 1. Скачайте или клонируйте исходники — 
+```
 $ git clone https://github.com/Baxromxoja16/hexashop.git
 $ cd hexashop
 ```
