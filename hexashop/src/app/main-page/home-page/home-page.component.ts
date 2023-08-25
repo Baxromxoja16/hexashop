@@ -29,6 +29,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     //     this.categories = val;
     //   })
     // )
+    alert('При первом посещении данные будут отображаться немного медленнее, пожалуйста, подождите немного');
   }
 
   ngOnDestroy(): void {
