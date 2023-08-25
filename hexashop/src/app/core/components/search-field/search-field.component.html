@@ -53,7 +53,7 @@
 
 <div (appClickOut)="openResultField = false" class="result-field" id="products" *ngIf="openResultField">
   <h2 *ngIf=" searchResult.length <= 0">We didn't find what you were looking for</h2>
-  <div class="col-lg-4" *ngFor="let data of searchResult">
+  <div class="col-lg-4 col-sm-6 col-6" *ngFor="let data of searchResult">
     <div class="item">
       <div class="thumb">
         <div class="hover-content">
