@@ -28,11 +28,15 @@ export class GoodsService {
   }
 
   async findPage(page: number) {
-    return await this.goodsModel
-      .find()
-      .sort({ updatedAt: -1 })
-      .skip((page - 1) * 9)
-      .limit(9);
+    if (typeof page === 'number' && page > 0) {
+      return await this.goodsModel
+        .find()
+        .sort({ updatedAt: -1 })
+        .skip((page - 1) * 9)
+        .limit(9);
+    } else {
+      throw new BadRequestException("Params is not provided correctly")
+    }
   }
 
   async findOne(id: string) {
