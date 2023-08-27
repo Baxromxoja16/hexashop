@@ -21,7 +21,6 @@ export class GoodsService {
 
   async findAll() {
     return await this.goodsModel.find().limit(21);
-    return await this.goodsModel.find().limit(21);
   }
 
   async search(name: string) {
