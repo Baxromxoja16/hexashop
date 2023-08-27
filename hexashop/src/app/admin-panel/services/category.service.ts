@@ -30,14 +30,17 @@ export class CategoryService {
   }
 
   deleteCategory(id: string) {
-    return this.http.delete(this.baseUrl + 'category/' + id, { headers: this.headers });
+    return this.http.delete(this.baseUrl + 'category/' + id, { headers: this.headers }).pipe(tap((data) => {
+      this.router.navigate(['/admin/category/new'])
+    }));
   }
 
   editCategory(id: string) {
-    return this.http.get<Categories>(this.baseUrl + 'category/' + id, { headers: this.headers }).pipe(tap(data => {
-      this.categoryChanged$.next(data);
-      this.router.navigate(['/admin/category/edit']);
-    }));
+    
+    // return this.http.get<Categories>(this.baseUrl + 'category/' + id, { headers: this.headers }).pipe(tap(data => {
+    //   this.categoryChanged$.next(data);
+    //   this.router.navigate(['/admin/category/edit']);
+    // }));
   }
 
 

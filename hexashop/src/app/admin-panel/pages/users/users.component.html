@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-4" *ngFor="let user of users">
-      <h3>Name is {{user.name}}</h3>
-      <p>Phone Number: {{user.phone}} </p>
-      <p>Created At: {{user.createdAt | date}} </p>
-
+    <div class="card col-lg-4 col-md-6" *ngFor="let user of users">
+      <div class="card-body" >
+        <h5 class="card-title">{{ user.name }}</h5>
+        <p class="card-text">Phone Number: {{ user.phone }}</p>
+        <p class="card-text">Created At: {{ user.createdAt | date }}</p>
+      </div>
     </div>
   </div>
 </div>
+

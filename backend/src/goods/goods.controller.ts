@@ -54,8 +54,8 @@ export class GoodsController {
 
   @PublicFromAdmin()
   @Get('/:page')
-  pagination(@Param('id') id: string) {
-    return this.goodsService.findPage(+id);
+  pagination(@Param('page') page: string) {
+    return this.goodsService.findPage(+page);
   }
 
   @Post()
