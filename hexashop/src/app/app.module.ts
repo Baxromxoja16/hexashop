@@ -60,7 +60,7 @@ import { PaginationComponent } from './core/components/pagination/pagination.com
         LoadingSpinnerComponent,
         ClickOutDirective,
         AdminPanelComponent,
-        PaginationComponent
+        PaginationComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],

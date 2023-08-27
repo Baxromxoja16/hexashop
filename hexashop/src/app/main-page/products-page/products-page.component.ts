@@ -15,17 +15,16 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
 
   subscription$: Subscription = new Subscription();
 
-  products: any = [];
+  products: Products[] = [];
+
+  pageNumber = 1
 
   constructor(private productsService: ProductsService, private productsMoreService: ProductsMoreService, public loaderService: LoaderService) { }
 
   ngOnInit(): void {
     this.loaderService.setLoading(true);
 
-    this.subscription$.add(this.productsService.getCategoryProducts().subscribe((data) => {
-      this.products = data;
-      this.loaderService.setLoading(false);
-    }))
+    this.subscription$.add(this.getGoods(this.pageNumber))
   }
 
   productSee(param: string, id: string) {
@@ -33,7 +32,23 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     this.subscription$.add(this.productsMoreService.productsSee(param, id).subscribe());
   }
 
+  next() {
+    this.pageNumber += 1;
+    this.getGoods(this.pageNumber);
+  }
+  prev() {
+    this.pageNumber -= 1;
+    this.getGoods(this.pageNumber);
+  }
+
   ngOnDestroy(): void {
     this.subscription$.unsubscribe();
+  }
+
+  private getGoods(page:number = 1) {
+    this.productsService.getCategoryProducts(page).subscribe((data) => {
+      this.products = data;
+      this.loaderService.setLoading(false);
+    })
   }
 }
