@@ -35,7 +35,7 @@ export class GoodsService {
         .skip((page - 1) * 9)
         .limit(9);
     } else {
-      throw new BadRequestException("Params is not provided correctly")
+      throw new BadRequestException('Params is not provided correctly');
     }
   }
 
