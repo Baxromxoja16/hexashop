@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ReplaySubject, tap } from 'rxjs';
+import { ReplaySubject, map, tap } from 'rxjs';
 import { Product, Products } from 'src/app/core/models/products.model';
 
 @Injectable({
@@ -20,11 +20,28 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts() {
-    return this.http.get<Product[]>(this.baseUrl + 'goods/')
-      .pipe(tap((data) => {
-        this.products = data;
-      }));
+  getFakeProducts() {
+    return this.http.get<any>('https://api.escuelajs.co/api/v1/products')
+      .pipe(map(data => {
+        
+        return data.map((item: any) => {
+          return {
+            name: `${item.title} ${item.id}`,
+            imageUrls: item.images[0],
+            availableAmount: 23,
+            description: item.description,
+            price: +item.price,
+            category: "64b7ab932fc2ed4378cb8d66",
+          }
+        })
+
+      }))
+  }
+
+  getProducts(page: number = 1) {
+    this.headers.set('page', page.toString());
+
+  return this.http.get<Product[]>(this.baseUrl + 'goods/', { headers: this.headers })
   }
   getProduct(index: string) {
     return this.products.filter((val: Product) => val._id === index);

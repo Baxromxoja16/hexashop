@@ -11,6 +11,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CoreModule } from '../core/core.module';
 
 
 @NgModule({
@@ -21,8 +22,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     CategoryComponent,
     UsersComponent,
-    ProductsComponent,
-    ProductsFormComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
       {
         path: '', component: AdminPanelComponent
       }
-    ])
+    ]),
+    CoreModule
   ],
   exports: [
     AdminSidebarComponent,
