@@ -38,10 +38,10 @@ export class ProductsService {
       }))
   }
 
-  getProducts(page: number = 1) {
+  getProducts(page: number) {
     this.headers.set('page', page.toString());
 
-  return this.http.get<Product[]>(this.baseUrl + 'goods/', { headers: this.headers })
+  return this.http.get<Product[]>(this.baseUrl + 'goods/' + page, { headers: this.headers })
   }
   getProduct(index: string) {
     return this.products.filter((val: Product) => val._id === index);

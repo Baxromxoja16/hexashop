@@ -14,8 +14,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   products: Products[] = [];
 
-  page = 1; // Initial page number
-  isLoading: boolean = false; // is a boolean flag to track whether new items are being loaded.
+  page = 1;
+  isLoading: boolean = false;
+
+  isLast = false;
 
   constructor(
     private productsService: ProductsService,
@@ -31,13 +33,25 @@ export class ProductsComponent implements OnInit, OnDestroy {
     const getProducts = this.productsService
       .getProducts(this.page)
       .subscribe((data) => {
-        this.products = [...this.products, ...data];
+        this.products.push(...data)
         this.page++;
         this.isLoading = false
+
+        if(data.length < 9) this.isLast = true;
       });
 
     this.subscription.add(getProducts);
   }
+
+  @HostListener('window:scroll') 
+    scrolling() {
+      const scrolling = window.innerHeight + document.documentElement.scrollTop;
+      const conditionScroll = scrolling >= (document.scrollingElement?.scrollHeight as number);
+
+      if (conditionScroll && !this.isLoading && !this.isLast) {
+        this.loadData()
+      }
+    }
 
   settings(mode: string, id: string, index: number = 0) {
     if (mode === 'edit') {
