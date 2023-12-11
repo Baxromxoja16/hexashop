@@ -22,17 +22,20 @@ export class SingleProductPageComponent implements OnInit, OnDestroy {
 
   totalPrice = 0;
   productPrice = 0;
-  product: any
+  product: any = {}
   confirmRes: boolean = false;
+  isLoading = false;
 
   constructor(private productsMoreService: ProductsMoreService, private singleBuyService: SingleBuyService) { }
 
   ngOnInit(): void {
     this.product$ = this.productsMoreService.productsSee('more', localStorage.getItem('productId')!);
+    this.isLoading = true;
     this.subscription$.add(this.productsMoreService.productsSee('more', localStorage.getItem('productId')!).subscribe((data) => {
       this.product = data;
       this.productPrice = data.price;
       this.totalPrice = data.price;
+      this.isLoading = false;       
     }))
   }
 

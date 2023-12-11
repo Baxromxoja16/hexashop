@@ -8,20 +8,21 @@
 <!-- ***** Product Area Starts ***** -->
 <section class="section" id="product">
   <div class="container">
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
     <div class="row">
       <div class="col-lg-8">
         <div class="left-images">
-          <img src="{{ (product$ | async)?.imageUrls}}" alt="" />
+          <img src="{{ product.imageUrls}}" alt="" />
         </div>
       </div>
       <div class="col-lg-4">
         <div class="right-content">
-          <h4>{{ (product$ | async)?.name}}</h4>
-          <span class="price">${{ (product$ | async)?.price}}</span>
+          <h4>{{ product.name}}</h4>
+          <span class="price">${{ product.price}}</span>
 
-          <span>{{ (product$ | async)?.description}}</span>
+          <span>{{ product.description}}</span>
           <div class="quote">
-            Available Amount: {{ (product$ | async)?.availableAmount}}
+            Available Amount: {{ product.availableAmount}}
           </div>
           <div class="quantity-content">
             <div class="left-content">
@@ -55,7 +56,7 @@
                 />
               </div>
             </div>
-            <span class="price">Size: {{ (product$ | async)?.size}}</span>
+            <span class="price">Size: {{ product.size }}</span>
           </div>
           <div class="total">
             <h4>Total: ${{ totalPrice }}</h4>
