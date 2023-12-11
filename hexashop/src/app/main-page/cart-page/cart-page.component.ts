@@ -18,8 +18,6 @@ export class CartPageComponent implements OnInit, OnDestroy {
 
   subscription: Subscription = new Subscription();
 
-  isLoading = false;
-
   ngOnInit(): void {
   }
 
@@ -27,8 +25,7 @@ export class CartPageComponent implements OnInit, OnDestroy {
     if (param === 'more') {
       console.log('load');
       
-      this.isLoading = true;
-      const productSee = this.productsMoreService.productsSee(param, id).subscribe(() => this.isLoading=false);
+      const productSee = this.productsMoreService.productsSee(param, id).subscribe();
       this.subscription.add(productSee)
 
       this.router.navigate(['/single-product']);

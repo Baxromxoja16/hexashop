@@ -24,6 +24,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  cl() {
+    // this.router.navigate(['/main'])
+    
+  }
+
   onDiscoverMore(id: string) {
     this.subscription$.add(this.homeService.getClothes(id).subscribe());
     this.router.navigate(['/category']);

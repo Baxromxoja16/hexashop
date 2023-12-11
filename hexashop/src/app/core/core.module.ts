@@ -18,7 +18,7 @@ import { SubscribeComponent } from './components/subscribe/subscribe.component';
     SearchFieldComponent,
     SubscribeComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, BrowserModule],
   exports: [
     FooterComponent,
     HeaderComponent,
