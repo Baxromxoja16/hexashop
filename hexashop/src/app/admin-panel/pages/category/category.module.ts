@@ -4,12 +4,13 @@ import { RouterModule } from '@angular/router';
 import { CategoryComponent } from './category.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 
 
 @NgModule({
   declarations: [
-    CategoryFormComponent
+    CategoryFormComponent,
   ],
   imports: [
     CommonModule,
@@ -19,6 +20,12 @@ import { ReactiveFormsModule } from '@angular/forms';
       { path: 'new', component: CategoryFormComponent },
       { path: 'edit', component: CategoryFormComponent },
     ])
+  ],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false }
+    }
   ]
 })
 export class CategoryModule { }

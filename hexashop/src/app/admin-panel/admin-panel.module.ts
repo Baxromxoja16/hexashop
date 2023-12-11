@@ -12,6 +12,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ProductsFormComponent } from './pages/products/products-form/products-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '../core/core.module';
+import { MaterialModule } from '../core/material/material.module';
 
 
 @NgModule({
@@ -31,12 +32,14 @@ import { CoreModule } from '../core/core.module';
         path: '', component: AdminPanelComponent
       }
     ]),
-    CoreModule
+    CoreModule,
+    MaterialModule
   ],
   exports: [
     AdminSidebarComponent,
     AdminHeaderComponent,
-    AdminFooterComponent
+    AdminFooterComponent,
+    MaterialModule
   ]
 })
 export class AdminPanelModule { }

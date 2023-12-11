@@ -5,6 +5,7 @@ import { ProductsComponent } from './products.component';
 import { ProductsFormComponent } from './products-form/products-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
+import { MaterialModule } from 'src/app/core/material/material.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CoreModule } from 'src/app/core/core.module';
       { path: 'edit/:id', component: ProductsFormComponent },
       // { path: ':id', component: ProductsFormComponent },
     ]),
-   CoreModule
+   CoreModule,
+   MaterialModule
   ]
 })
 export class ProductsModule { }

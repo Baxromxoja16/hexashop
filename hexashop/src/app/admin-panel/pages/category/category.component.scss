@@ -3,3 +3,30 @@
   gap: 10px 0;
   flex-wrap: wrap;
 }
+.container {
+  margin-top: 20px;
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .card {
+      width: 200px;
+      padding: 5px 15px;
+
+      transition: transform 0.3s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+::ng-deep {
+  mat-card-actions {
+    button {
+      margin: 5px;
+    }
+  }
+}

@@ -7,7 +7,7 @@ import { CategoryService } from '../../services/category.service';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit, OnDestroy {
   categories: Categories[] = [];
@@ -16,11 +16,14 @@ export class CategoryComponent implements OnInit, OnDestroy {
 
   editCategoryData!: Categories;
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.subscription$.add(this.categoryService.getCategories()
-    .subscribe((data: Categories[]) => this.categories = data));
+    this.subscription$.add(
+      this.categoryService
+        .getCategories()
+        .subscribe((data: Categories[]) => (this.categories = data))
+    );
   }
 
   edit(id: string) {

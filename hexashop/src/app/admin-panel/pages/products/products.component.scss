@@ -13,3 +13,31 @@ a {
 .container {
   position: relative;
 }
+
+.card {
+  width: 200px;
+  padding: 5px 15px;
+
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+::ng-deep {
+  mat-card-actions {
+    button {
+      margin: 5px;
+    }
+  }
+
+  mat-card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px;
+  }
+}
+.mat-mdc-card-header {
+  padding: 0;
+}

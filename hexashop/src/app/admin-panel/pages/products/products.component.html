@@ -3,21 +3,26 @@
 
   <a class="btn btn-success mb-3" routerLink="/admin/products/new">Create Goods</a>
   <div class="row" >
-    <div class="col-lg-4 col-md-6" *ngFor="let product of products; let i = index">
-      <div class="item">
-        <div class="thumb">
-          <span
-            class="bg-style"
-            style="background: url({{product.imageUrls}}); width: 100%; height: 280px; background-size: cover;"
-          ></span>
-        </div>
-        <div class="down-content">
-          <h4>{{product.name}}</h4>
-          <span>${{product.price}}</span>
-        </div>
-      </div>
-      <button class="btn btn-success" (click)="settings('edit', product._id)">Edit</button>
-      <button class="btn btn-danger ml-3" (click)="settings('del', product._id, i)">Delete</button>
-    </div>
+    <mat-card
+        class="card"
+        *ngFor="let category of products"
+      >
+
+        <img
+          mat-card-image
+          src="{{ category.imageUrls }}"
+          alt="Photo of a Shiba Inu"
+        />
+
+        <mat-card-header>
+          <mat-card-title>{{ category.name }}</mat-card-title>
+          <mat-card-subtitle>{{category.price}} $</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-actions>
+          <button mat-raised-button color="primary">EDIT</button>
+          <button mat-raised-button color="warn">DELETE</button>
+        </mat-card-actions>
+      </mat-card>
   </div>
 </div>
