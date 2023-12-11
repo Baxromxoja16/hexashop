@@ -25,7 +25,6 @@ import { ClickOutDirective } from './core/directives/click-out.directive';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminPanelModule } from "./admin-panel/admin-panel.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CoreModule } from './core/core.module';
 
 @NgModule({
@@ -60,7 +59,6 @@ import { CoreModule } from './core/core.module';
         ReactiveFormsModule,
         AdminPanelModule,
         BrowserAnimationsModule,
-        ScrollingModule,
         CoreModule
     ]
 })
