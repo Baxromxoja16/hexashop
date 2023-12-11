@@ -50,8 +50,10 @@ export class SingleProductPageComponent implements OnInit, OnDestroy {
       this.totalPrice < this.productPrice ? this.totalPrice = this.productPrice : this.totalPrice;
       this.count < 1 ? this.count = 1 : this.count;
     } else {
-      this.count++;
-      this.totalPrice += this.productPrice;
+      if(this.product.availableAmount > this.count) {
+        this.count++;
+        this.totalPrice += this.productPrice;
+      }
     }
   }
 
