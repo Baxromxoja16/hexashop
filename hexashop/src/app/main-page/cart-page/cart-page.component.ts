@@ -16,12 +16,16 @@ export class CartPageComponent implements OnInit, OnDestroy {
 
   cardData: Products[] = this.productsMoreService.cardData;
 
+  subscription: Subscription = new Subscription()
+
   ngOnInit(): void {
   }
 
   view(param: string, id: string) {
     if (param === 'more') {
-      this.productsMoreService.productsSee(param, id).subscribe();
+      const productSee = this.productsMoreService.productsSee(param, id).subscribe();
+      this.subscription.add(productSee)
+
       this.router.navigate(['/single-product']);
     } else {
       const found = this.cardData.findIndex((data) => data._id === id);
@@ -31,5 +35,6 @@ export class CartPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.subscription.unsubscribe()
   }
 }

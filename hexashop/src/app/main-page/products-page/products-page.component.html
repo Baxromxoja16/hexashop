@@ -1,5 +1,7 @@
 <!-- ***** Products Area Starts ***** -->
 <section class="section" id="products">
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -40,15 +42,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="col-lg-12">
-      <div class="pagination">
-        <button class="btn btn-dark mr-2" (click)="prev()" [disabled]="page<=1">Prev</button>
-        <button class="btn btn-dark" (click)="next()" [disabled]="products.length < 9">Next</button>
-      </div>
-    </div> -->
-
-
   </div>
 </section>
 <!-- ***** Products Area Ends ***** -->
