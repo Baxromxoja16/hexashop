@@ -10,7 +10,7 @@ export class ProductsService {
 
   constructor(private http: HttpClient) {}
 
-  getCategoryProducts(page: number = 1) {
+  getProducts(page: number = 1) {
     return this.http.get<Products[]>(this.baseUrl + 'goods/' + page)
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { Products } from '../../core/models/products.model';
@@ -8,47 +8,67 @@ import { ProductsService } from './services/products.service';
 @Component({
   selector: 'app-products-page',
   templateUrl: './products-page.component.html',
-  styleUrls: ['./products-page.component.scss']
+  styleUrls: ['./products-page.component.scss'],
 })
 export class ProductsPageComponent implements OnInit, OnDestroy {
-  title = { title: 'Products', text: 'Learn more about us', about: false }
+  title = { title: 'Products', text: 'Learn more about us', about: false };
 
-  subscription$: Subscription = new Subscription();
+  subscription: Subscription = new Subscription();
 
   products: Products[] = [];
 
-  pageNumber = 1
+  page = 1;
+  isLoading: boolean = false;
 
-  constructor(private productsService: ProductsService, private productsMoreService: ProductsMoreService, public loaderService: LoaderService) { }
+  isLast = false;
+
+  constructor(
+    private productsService: ProductsService,
+    private productsMoreService: ProductsMoreService
+  ) {}
 
   ngOnInit(): void {
-    this.loaderService.setLoading(true);
+    this.loadData()
+  }
 
-    this.subscription$.add(this.getGoods(this.pageNumber))
+  loadData() {
+    this.isLoading = true;
+    const getProducts = this.productsService
+      .getProducts(this.page)
+      .subscribe((data) => {
+        this.products.push(...data);
+        this.page++;
+        this.isLoading = false;
+
+        if (data.length < 9) this.isLast = true;
+      });
+
+    this.subscription.add(getProducts);
+  }
+
+  @HostListener('window:scroll')
+  scrolling() {
+    const scrolling = window.innerHeight + document.documentElement.scrollTop;
+    const conditionScroll =
+      scrolling >= (document.scrollingElement?.scrollHeight as number) - 300;
+
+    if (conditionScroll && !this.isLoading && !this.isLast) {
+      this.loadData();
+    }
   }
 
   productSee(param: string, id: string) {
-    this.subscription$.add(this.productsMoreService.productsSee(param, localStorage.getItem('productId')!).subscribe());
-    this.subscription$.add(this.productsMoreService.productsSee(param, id).subscribe());
-  }
-
-  next() {
-    this.pageNumber += 1;
-    this.getGoods(this.pageNumber);
-  }
-  prev() {
-    this.pageNumber -= 1;
-    this.getGoods(this.pageNumber);
+    this.subscription.add(
+      this.productsMoreService
+        .productsSee(param, localStorage.getItem('productId')!)
+        .subscribe()
+    );
+    this.subscription.add(
+      this.productsMoreService.productsSee(param, id).subscribe()
+    );
   }
 
   ngOnDestroy(): void {
-    this.subscription$.unsubscribe();
-  }
-
-  private getGoods(page:number = 1) {
-    this.productsService.getCategoryProducts(page).subscribe((data) => {
-      this.products = data;
-      this.loaderService.setLoading(false);
-    })
+    this.subscription.unsubscribe();
   }
 }
