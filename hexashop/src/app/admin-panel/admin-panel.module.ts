@@ -39,7 +39,8 @@ import { MaterialModule } from '../core/material/material.module';
     AdminSidebarComponent,
     AdminHeaderComponent,
     AdminFooterComponent,
-    MaterialModule
+    MaterialModule,
+    CoreModule
   ]
 })
 export class AdminPanelModule { }
