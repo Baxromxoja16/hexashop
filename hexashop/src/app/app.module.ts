@@ -27,6 +27,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminPanelModule } from "./admin-panel/admin-panel.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
+import { HeaderComponent } from './core/components/header/header.component';
 
 @NgModule({
     declarations: [
@@ -47,7 +48,7 @@ import { CoreModule } from './core/core.module';
         AuthComponent,
         MainPageComponent,
         ErrorPageComponent,
-        
+        HeaderComponent,
         ClickOutDirective,
         AdminPanelComponent,
     ],

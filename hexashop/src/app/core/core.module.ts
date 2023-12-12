@@ -12,7 +12,6 @@ import { SubscribeComponent } from './components/subscribe/subscribe.component';
 @NgModule({
   declarations: [
     FooterComponent,
-    HeaderComponent,
     LoadingSpinnerComponent,
     PageHeadingComponent,
     SearchFieldComponent,
@@ -21,7 +20,6 @@ import { SubscribeComponent } from './components/subscribe/subscribe.component';
   imports: [CommonModule, ReactiveFormsModule],
   exports: [
     FooterComponent,
-    HeaderComponent,
     LoadingSpinnerComponent,
     PageHeadingComponent,
     SearchFieldComponent,
