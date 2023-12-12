@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { BuyProducts, Product } from 'src/app/core/models/buy.model';
-import { LoaderService } from 'src/app/core/services/loader.service';
 import { Products } from '../../core/models/products.model';
 import { ProductsMoreService } from '../../core/services/products-more.service';
 import { SingleBuyService } from './services/single-buy.service';

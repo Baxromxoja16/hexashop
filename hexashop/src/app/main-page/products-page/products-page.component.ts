@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Observable, Subject, Subscription, share, switchMap } from 'rxjs';
-import { LoaderService } from 'src/app/core/services/loader.service';
 import { Products } from '../../core/models/products.model';
 import { ProductsMoreService } from '../../core/services/products-more.service';
 import { ProductsService } from './services/products.service';

@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LoaderService } from 'src/app/core/services/loader.service';
 import { HomeService } from '../../services/home.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class MainBannerComponent implements OnInit, OnDestroy {
 
   categories!: any;
 
-  constructor(private homeService: HomeService, private router: Router, public loaderService: LoaderService) { }
+  constructor(private homeService: HomeService, private router: Router) { }
 
   ngOnInit() {
     this.subscription$.add(
