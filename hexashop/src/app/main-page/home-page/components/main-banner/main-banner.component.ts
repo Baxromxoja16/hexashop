@@ -17,11 +17,9 @@ export class MainBannerComponent implements OnInit, OnDestroy {
   constructor(private homeService: HomeService, private router: Router, public loaderService: LoaderService) { }
 
   ngOnInit() {
-    this.loaderService.setLoading(true);
     this.subscription$.add(
       this.homeService.getCategories().subscribe((val) => {
         this.categories = val;
-        this.loaderService.setLoading(false);
       })
     );
   }

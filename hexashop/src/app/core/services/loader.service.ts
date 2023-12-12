@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
+import { Subject, distinctUntilChanged, filter, map, share, switchMap } from 'rxjs';
+import { CategoryService } from 'src/app/admin-panel/services/category.service';
+import { ProductsService } from 'src/app/admin-panel/services/products.service';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoaderService {
-  private loading = true;
+  private readonly load$ = new Subject<void>();
 
-  constructor() { }
+  private readonly response$ = this.load$.pipe(
+    // switchMap(() => this.loadingService.load()),
+    share()
+  );
 
-  setLoading(loading: boolean) {
-    this.loading = loading;
-  }
+  readonly result$ = this.response$.pipe(
+    map(response => (typeof response === "string" ? response : null)),
+    distinctUntilChanged()
+  );
 
-  getLoading(): boolean {
-    return this.loading;
-  }
+  readonly loadingProgress$ = this.response$.pipe(filter(Number.isFinite));
+
+
+  constructor(private loadingService: LoadingService) { }
 }
